@@ -1,0 +1,209 @@
+﻿
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Ideas & Investors</title>
+    <!-- web fonts -->
+    
+    <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Hind&display=swap" rel="stylesheet">
+    <!-- //web fonts -->
+    <!-- Template CSS -->
+    <!-- css files -->
+    
+	<!-- //css files -->
+	
+	<!-- google fonts -->
+	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext" rel="stylesheet">
+	<!-- //google fonts -->
+
+    <link rel="stylesheet" href="~/template/assets/css/style-starter.css">
+
+
+     <script>window.FontAwesomeKitConfig = {"asyncLoading":{"enabled":true},"autoA11y":{"enabled":true},"baseUrl":"https://ka-f.fontawesome.com","detectConflictsUntil":null,"iconUploads":{},"license":"free","method":"css","minify":{"enabled":true},"token":"af562a2a63","v4FontFaceShim":{"enabled":true},"v4shim":{"enabled":true},"version":"5.15.1"};
+!function(t){"function"==typeof define&&define.amd?define(t):t()}((function(){"use strict";function t(e){return(t="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(e)}function e(t,e,n){return e in t?Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}function n(t,e){var n=Object.keys(t);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(t);e&&(o=o.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),n.push.apply(n,o)}return n}function o(t){for(var o=1;o<arguments.length;o++){var r=null!=arguments[o]?arguments[o]:{};o%2?n(Object(r),!0).forEach((function(n){e(t,n,r[n])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):n(Object(r)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))}))}return t}function r(t,e){return function(t){if(Array.isArray(t))return t}(t)||function(t,e){if(!(Symbol.iterator in Object(t)||"[object Arguments]"===Object.prototype.toString.call(t)))return;var n=[],o=!0,r=!1,i=void 0;try{for(var c,a=t[Symbol.iterator]();!(o=(c=a.next()).done)&&(n.push(c.value),!e||n.length!==e);o=!0);}catch(t){r=!0,i=t}finally{try{o||null==a.return||a.return()}finally{if(r)throw i}}return n}(t,e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance")}()}function i(t,e){var n=e&&e.addOn||"",o=e&&e.baseFilename||t.license+n,r=e&&e.minify?".min":"",i=e&&e.fileSuffix||t.method,c=e&&e.subdir||t.method;return t.baseUrl+"/releases/"+("latest"===t.version?"latest":"v".concat(t.version))+"/"+c+"/"+o+r+"."+i}function c(t,e){var n=e||["fa"],o="."+Array.prototype.join.call(n,",."),r=t.querySelectorAll(o);Array.prototype.forEach.call(r,(function(e){var n=e.getAttribute("title");e.setAttribute("aria-hidden","true");var o=!e.nextElementSibling||!e.nextElementSibling.classList.contains("sr-only");if(n&&o){var r=t.createElement("span");r.innerHTML=n,r.classList.add("sr-only"),e.parentNode.insertBefore(r,e.nextSibling)}}))}var a,u=function(){},f="undefined"!=typeof global&&void 0!==global.process&&"function"==typeof global.process.emit,s="undefined"==typeof setImmediate?setTimeout:setImmediate,d=[];function l(){for(var t=0;t<d.length;t++)d[t][0](d[t][1]);d=[],a=!1}function h(t,e){d.push([t,e]),a||(a=!0,s(l,0))}function m(t){var e=t.owner,n=e._state,o=e._data,r=t[n],i=t.then;if("function"==typeof r){n="fulfilled";try{o=r(o)}catch(t){b(i,t)}}p(i,o)||("fulfilled"===n&&v(i,o),"rejected"===n&&b(i,o))}function p(e,n){var o;try{if(e===n)throw new TypeError("A promises callback cannot return that same promise.");if(n&&("function"==typeof n||"object"===t(n))){var r=n.then;if("function"==typeof r)return r.call(n,(function(t){o||(o=!0,n===t?y(e,t):v(e,t))}),(function(t){o||(o=!0,b(e,t))})),!0}}catch(t){return o||b(e,t),!0}return!1}function v(t,e){t!==e&&p(t,e)||y(t,e)}function y(t,e){"pending"===t._state&&(t._state="settled",t._data=e,h(w,t))}function b(t,e){"pending"===t._state&&(t._state="settled",t._data=e,h(A,t))}function g(t){t._then=t._then.forEach(m)}function w(t){t._state="fulfilled",g(t)}function A(t){t._state="rejected",g(t),!t._handled&&f&&global.process.emit("unhandledRejection",t._data,t)}function O(t){global.process.emit("rejectionHandled",t)}function j(t){if("function"!=typeof t)throw new TypeError("Promise resolver "+t+" is not a function");if(this instanceof j==!1)throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.");this._then=[],function(t,e){function n(t){b(e,t)}try{t((function(t){v(e,t)}),n)}catch(t){n(t)}}(t,this)}j.prototype={constructor:j,_state:"pending",_then:null,_data:void 0,_handled:!1,then:function(t,e){var n={owner:this,then:new this.constructor(u),fulfilled:t,rejected:e};return!e&&!t||this._handled||(this._handled=!0,"rejected"===this._state&&f&&h(O,this)),"fulfilled"===this._state||"rejected"===this._state?h(m,n):this._then.push(n),n.then},catch:function(t){return this.then(null,t)}},j.all=function(t){if(!Array.isArray(t))throw new TypeError("You must pass an array to Promise.all().");return new j((function(e,n){var o=[],r=0;function i(t){return r++,function(n){o[t]=n,--r||e(o)}}for(var c,a=0;a<t.length;a++)(c=t[a])&&"function"==typeof c.then?c.then(i(a),n):o[a]=c;r||e(o)}))},j.race=function(t){if(!Array.isArray(t))throw new TypeError("You must pass an array to Promise.race().");return new j((function(e,n){for(var o,r=0;r<t.length;r++)(o=t[r])&&"function"==typeof o.then?o.then(e,n):e(o)}))},j.resolve=function(e){return e&&"object"===t(e)&&e.constructor===j?e:new j((function(t){t(e)}))},j.reject=function(t){return new j((function(e,n){n(t)}))};var S="function"==typeof Promise?Promise:j;function E(t,n){var o=n.fetch,r=n.XMLHttpRequest,i=n.token;return new S((function(n,c){if("function"==typeof o)o(t,{mode:"cors",cache:"default",headers:new Headers(e({},"fa-kit-token",i))}).then((function(t){if(t.ok)return t.text();throw new Error("")})).then((function(t){n(t)})).catch(c);else if("function"==typeof r){var a=new r;a.addEventListener("loadend",(function(){this.responseText?n(this.responseText):c(new Error(""))}));["abort","error","timeout"].map((function(t){a.addEventListener(t,(function(){c(new Error(""))}))})),a.open("GET",t),a.setRequestHeader("fa-kit-token",i),a.send()}else{c(new Error(""))}}))}function _(t,e){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:function(){},r=e.document||r,a=c.bind(c,r,["fa","fab","fas","far","fal","fad","fak"]);t.autoA11y.enabled&&n(a);var u=[{id:"fa-main",addOn:void 0}];t.v4shim.enabled&&u.push({id:"fa-v4-shims",addOn:"-v4-shims"}),t.v4FontFaceShim.enabled&&u.push({id:"fa-v4-font-face",addOn:"-v4-font-face"});var f=u.map((function(n){return new S((function(r,c){E(i(t,{addOn:n.addOn,minify:t.minify.enabled}),e).then((function(i){r(P(i,o({},e,{baseUrl:t.baseUrl,version:t.version,id:n.id})))})).catch(c)}))}));return S.all(f)}function P(t,e){var n=document.createElement("style"),o=document.createTextNode(function(t,e,n){var o=t;return[[/(url\("?)\.\.\/\.\.\/\.\./g,function(t,n){return"".concat(n).concat(e)}],[/(url\("?)\.\.\/webfonts/g,function(t,o){return"".concat(o).concat(e,"/releases/v").concat(n,"/webfonts")}],[/(url\("?)https:\/\/kit-free([^.])*\.fontawesome\.com/g,function(t,n){return"".concat(n).concat(e)}]].forEach((function(t){var e=r(t,2),n=e[0],i=e[1];o=o.replace(n,i)})),o}(t,e.baseUrl,e.version));return n.appendChild(o),n.media="all",e.id&&n.setAttribute("id",e.id),e&&e.detectingConflicts&&e.detectionIgnoreAttr&&n.setAttributeNode(document.createAttribute(e.detectionIgnoreAttr)),n}function F(t,e){e.autoA11y=t.autoA11y.enabled,"pro"===t.license&&(e.autoFetchSvg=!0,e.fetchSvgFrom=t.baseUrl+"/releases/"+("latest"===t.version?"latest":"v".concat(t.version))+"/svgs",e.fetchUploadedSvgFrom=t.uploadsUrl);var n=[];return t.v4shim.enabled&&n.push(new S((function(n,r){E(i(t,{addOn:"-v4-shims",minify:t.minify.enabled}),e).then((function(t){n(T(t,o({},e,{id:"fa-v4-shims"})))})).catch(r)}))),n.push(new S((function(n,r){E(i(t,{minify:t.minify.enabled}),e).then((function(t){var r=T(t,o({},e,{id:"fa-main"}));n(function(t,e){var n=e&&void 0!==e.autoFetchSvg?e.autoFetchSvg:void 0,o=e&&void 0!==e.autoA11y?e.autoA11y:void 0;void 0!==o&&t.setAttribute("data-auto-a11y",o?"true":"false");n&&(t.setAttributeNode(document.createAttribute("data-auto-fetch-svg")),t.setAttribute("data-fetch-svg-from",e.fetchSvgFrom),t.setAttribute("data-fetch-uploaded-svg-from",e.fetchUploadedSvgFrom));return t}(r,e))})).catch(r)}))),S.all(n)}function T(t,e){var n=document.createElement("SCRIPT"),o=document.createTextNode(t);return n.appendChild(o),n.referrerPolicy="strict-origin",e.id&&n.setAttribute("id",e.id),e&&e.detectingConflicts&&e.detectionIgnoreAttr&&n.setAttributeNode(document.createAttribute(e.detectionIgnoreAttr)),n}function C(t){var e,n=[],o=document,r=o.documentElement.doScroll,i=(r?/^loaded|^c/:/^loaded|^i|^c/).test(o.readyState);i||o.addEventListener("DOMContentLoaded",e=function(){for(o.removeEventListener("DOMContentLoaded",e),i=1;e=n.shift();)e()}),i?setTimeout(t,0):n.push(t)}function L(t){"undefined"!=typeof MutationObserver&&new MutationObserver(t).observe(document,{childList:!0,subtree:!0})}try{if(window.FontAwesomeKitConfig){var k=window.FontAwesomeKitConfig,x={detectingConflicts:k.detectConflictsUntil&&new Date<=new Date(k.detectConflictsUntil),detectionIgnoreAttr:"data-fa-detection-ignore",fetch:window.fetch,token:k.token,XMLHttpRequest:window.XMLHttpRequest,document:document},I=document.currentScript,U=I?I.parentElement:document.head;(function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return"js"===t.method?F(t,e):"css"===t.method?_(t,e,(function(t){C(t),L(t)})):void 0})(k,x).then((function(t){t.map((function(t){U.insertBefore(t,I?I.nextSibling:null)})),x.detectingConflicts&&I&&C((function(){I.setAttributeNode(document.createAttribute(x.detectionIgnoreAttr));var t=function(t,e){var n=document.createElement("script");return e&&e.detectionIgnoreAttr&&n.setAttributeNode(document.createAttribute(e.detectionIgnoreAttr)),n.src=i(t,{baseFilename:"conflict-detection",fileSuffix:"js",subdir:"js",minify:t.minify.enabled}),n}(k,x);document.body.appendChild(t)}))})).catch((function(t){console.error("".concat("Font Awesome Kit:"," ").concat(t))}))}}catch(t){console.error("".concat("Font Awesome Kit:"," ").concat(t))}}));
+</script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    
+  </head>
+  
+<!-- popup for login -->
+
+<!-- //popup for login -->
+<body>
+
+<!-- //Top Menu 1 -->
+<section class="w3l-bootstrap-header">
+  <nav class="navbar navbar-expand-lg navbar-light py-lg-2 py-2">
+    <div class="container">
+      <a class="navbar-brand" href="@Url.Action("Home","Login")"><span class="fa fa-lightbulb-o"></span> Ideas & Investors</a>
+      <!-- if logo is image enable this   
+    <a class="navbar-brand" href="#index.html">
+        <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+    </a> -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon fa fa-bars"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Home","Login")">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Login","Login")">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("AboutUs","Login")">About</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="~/template/services.html">Services</a>
+          </li>
+        
+          <li class="nav-item mr-0">
+            <a class="nav-link" href="@Url.Action("ContactUs","Login")">Contact</a>
+          </li>
+        </ul>
+       
+      </div>
+    </div>
+  </nav>
+</section>
+@RenderBody()
+@if (IsSectionDefined("cpValidation"))
+ {
+    @RenderSection("cpValidation",false)
+ }
+ <!-- grids block 5 -->
+ <section class="w3l-footer-29-main" id="footer">
+  <div class="footer-29">
+    <div class="grids-forms-1 pb-5">
+<div class="container">
+  <div class="grids-forms">
+      <div class="main-midd">
+          <h4 class="title-head">Newsletter – Get Updates & Latest News</h4>
+          
+      </div>
+      <div class="main-midd-2">
+          <form action="#" method="post" class="rightside-form">
+              <input type="email" name="email" placeholder="Enter your email">
+              <button class="btn" type="submit">Subscribe</button>
+          </form>
+      </div>
+    </div>
+  </div>
+  </div>
+      <div class="container pt-5">
+        
+          <div class="d-grid grid-col-4 footer-top-29">
+              <div class="footer-list-29 footer-1">
+                  <h6 class="footer-title-29">About Us</h6>
+                  <ul>
+                     <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae</p>
+                  </ul>
+                  <div class="main-social-footer-29">
+                    <h6 class="footer-title-29">Social Links</h6>
+                      <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                      <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                      <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                      <a href="#google-plus" class="google-plus"><span class="fa fa-google-plus"></span></a>
+                      <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                  </div>
+              </div>
+              <div class="footer-list-29 footer-2">
+                  <ul>
+                      <h6 class="footer-title-29">Useful Links</h6>
+                      <li><a href="services.html">Management</a></li>
+                      <li><a href="services.html">Reporting</a></li>
+                      <li><a href="services.html">Tracking</a></li>
+                      <li><a href="services.html">All Users</a></li>
+                      <li><a href="contact.html">Support</a></li>
+                  </ul>
+              </div>
+              <div class="footer-list-29 footer-3">
+                  <div class="properties">
+                      <h6 class="footer-title-29">Featured Properties</h6>
+                      <a href="#"><img src="assets/images/g7.jpg" class="img-responsive" alt=""><p>We Are Leading International Consultiing Agency</p></a>
+                      <a href="#"><img src="assets/images/g8.jpg" class="img-responsive" alt=""><p>Digital Marketing Agency all the foundational tools</p></a>
+                      <a href="#"><img src="assets/images/g9.jpg" class="img-responsive" alt=""><p>Doloremque velit sapien labore eius itna</p></a>
+                  </div>
+              </div>
+              <div class="footer-list-29 footer-4">
+                  <ul>
+                      <h6 class="footer-title-29">Quick Links</h6>
+                      <li><a href="@Url.Action("Home","Login")">Home</a></li>
+                      <li><a href="@Url.Action("AboutUs","Login")">About</a></li>
+                      <li><a href="@Url.Action("Home","Login")">Services</a></li>
+                      <li><a href="#"> Blog</a></li>
+                      <li><a href="@Url.Action("ContactUs","Login")">Contact</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="bottom-copies text-center">
+              <p class="copy-footer-29">© 2020 Estate Agent. All rights reserved</p>
+               
+          </div>
+      </div>
+  </div>
+   <!-- move top -->
+  <button onclick="topFunction()" id="movetop" title="Go to top">
+              <span class="fa fa-angle-up"></span>
+                 </button>
+                 <script>
+                     // When the user scrolls down 20px from the top of the document, show the button
+                     window.onscroll = function () {
+                         scrollFunction()
+                     };
+              
+                     function scrollFunction() {
+                         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                             document.getElementById("movetop").style.display = "block";
+                         } else {
+                             document.getElementById("movetop").style.display = "none";
+                         }
+                     }
+              
+                     // When the user clicks on the button, scroll to the top of the document
+                     function topFunction() {
+                         document.body.scrollTop = 0;
+                         document.documentElement.scrollTop = 0;
+                     }
+                 </script>
+                 <!-- /move top -->
+</section>
+<!-- // grids block 5 
+<script src="assets/js/jquery-3.3.1.min.js">
+</script>-->
+<!-- //footer-28 block 
+</section>
+-->
+@*
+<script>
+    $(function () {
+      $('.navbar-toggler').click(function () {
+        $('body').toggleClass('noscroll');
+      })
+    });
+  </script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
+  
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>*@
+
+<!-- Smooth scrolling -->
+
+</body>
+
+</html>
+<!-- // grids block 5 -->
