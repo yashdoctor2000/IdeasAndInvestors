@@ -22,6 +22,7 @@
 	<!-- //google fonts -->
 
     <link rel="stylesheet" href="~/template/assets/css/style-starter.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
 
 
      <script>window.FontAwesomeKitConfig = {"asyncLoading":{"enabled":true},"autoA11y":{"enabled":true},"baseUrl":"https://ka-f.fontawesome.com","detectConflictsUntil":null,"iconUploads":{},"license":"free","method":"css","minify":{"enabled":true},"token":"af562a2a63","v4FontFaceShim":{"enabled":true},"v4shim":{"enabled":true},"version":"5.15.1"};
@@ -30,6 +31,7 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     
   </head>
   
@@ -63,17 +65,27 @@
           <li class="nav-item">
             <a class="nav-link" href="@Url.Action("AboutUs","Login")">About</a>
           </li>
-           <li class="nav-item">
-            <a class="nav-link" href="~/template/services.html">Services</a>
-          </li>
-        
           <li class="nav-item mr-0">
             <a class="nav-link" href="@Url.Action("ContactUs","Login")">Contact</a>
           </li>
+          
+           <li>   
+             <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                SignUp Here
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="@Url.Action("SignUPStartUp","Login")">SignUp For Entrepreneurs</a></li>
+                <li><a class="dropdown-item" href="@Url.Action("SignUPInvestor","Login")">SignUp For Inverstors</a></li>
+                </ul>
+                </div>
+                
+                </li>
         </ul>
+        </div>     
        
       </div>
-    </div>
+    
   </nav>
 </section>
 @RenderBody()

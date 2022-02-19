@@ -43,14 +43,13 @@ namespace IdeasAndInvestors.Controllers
             
             return View();
         }
-        [HttpGet]
-        public IActionResult SignUP()
+        
+        public IActionResult SignUPStartUp()
         {
             return View();
 
         }
-        [HttpPost]
-        public IActionResult SignUP(IFormCollection frm)
+        public IActionResult SignUPInvestor()
         {
             return View();
         }
