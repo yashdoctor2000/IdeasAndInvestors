@@ -4,5 +4,76 @@
     Layout = "~/Views/Shared/_IdeasInvestorsLayout.cshtml";
 }
 
-<h1>SignUPInvestor</h1>
+<script src="~/lib/bootstrap/dist/js/bootstrap.esm.min.js"></script>
+<link rel="stylesheet" href="~/template/assets/css/login-style.css">
+
+ <div class="signinform">
+      <h1>Welcome Entrepreneurs</h1>
+        <!-- container -->
+        <div class="container">
+            <!-- main content -->
+            <div class="w3l-form-info">
+                <div class="w3_info">
+                    <h2>SignUp Here</h2>
+                    <form action="#" method="post">
+                        <div class="input-group">
+                            <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Name" required="" id="Name" name="Name">
+                        </div>
+                        <div class="input-group">
+                            <span><i class="fas fa-book" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Address" required="" id="Address" name="Address">
+                        </div>
+                        <div class="input-group">
+                            <span><i class="fas fa-calendar" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Date Of Birth (YYYY/MM/DD)" required="" id="DOB" name="DOB">
+                        </div>
+                        <div class="input-group">
+                           <span><i class="fa fa-venus-mars" ariaaria-hidden="true"></i></span>
+                             <input type="text" placeholder="Gender" required="" id="Gender" name="Gender">
+                        </div>
+
+                        <div class="input-group">
+                            <span><i class="fas fa-phone" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Phone Number" required="" id="PNumber" name="PNumber">
+                        </div>
+                        <div class="input-group">
+                            <span><i class="fas fa-graduation-cap" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Qualification" required="" id="Qualification" name="Qualification">
+                        </div>
+                        <div class="input-group">
+                            <span><i class="fas fa-user" aria-hidden="true"></i></span>
+                            <input type="email" placeholder="Email Address" required="" id="Email" name="Email">
+                        </div>
+                        <div class="input-group">
+                            <span><i class="fas fa-key" aria-hidden="true"></i></span>
+                            <input type="password" placeholder="Password" required="" id="Password" name="Password">
+                        </div>
+                        <div class="input-group">
+                            <span><i class="fas fa-image" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Your Image" required="" id="Image" name="Image">
+                        </div>
+                        
+
+                       
+                        <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+
+
+                    </form>
+                     @if (TempData["ErrMsg"]!= null)
+                                    {
+                                        <label style="color:red">
+                                            @TempData["ErrMsg"]
+                                        </label>
+                                    }
+                    
+                   
+                </div>
+            </div>
+            <!-- //main content -->
+        </div>
+        <!-- //container -->
+        <!-- footer -->
+        
+</div>
 

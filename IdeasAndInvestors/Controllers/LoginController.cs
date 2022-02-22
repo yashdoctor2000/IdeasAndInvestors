@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IdeasAndInvestors.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdeasAndInvestors.Controllers
@@ -43,10 +44,32 @@ namespace IdeasAndInvestors.Controllers
             
             return View();
         }
-        
+        [HttpGet]
         public IActionResult SignUPStartUp()
         {
             return View();
+
+        }
+        [HttpPost]
+        public IActionResult SignUPStartUp(PersonMaster personMaster, IFormFile file)
+        {
+
+            string uniqueImageName = null;
+            if (file != null)
+            {
+                string uploadimgfoldername = Path.Combine(henv.WebRootPath, "images\\StartupImage");
+                uniqueImageName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                string finalPath = Path.Combine(uploadimgfoldername, uniqueImageName);
+                file.CopyTo(new FileStream(finalPath, FileMode.Create));
+                personMaster.Pimage = "images\\StartupImage" + uniqueImageName;
+            }
+            
+            personMaster.Pqid = 0;
+            personMaster.Panswer = "NoAnswer";
+            personMaster.Prollid = 1;//1 for startup
+            bkDb.PersonMasters.Add(personMaster);
+            bkDb.SaveChanges();
+            return RedirectToAction("Login");
 
         }
         public IActionResult SignUPInvestor()

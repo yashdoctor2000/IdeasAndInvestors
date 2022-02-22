@@ -8,8 +8,8 @@
 
 <script src="~/lib/bootstrap/dist/js/bootstrap.esm.min.js"></script>
 <link rel="stylesheet" href="~/template/assets/css/login-style.css">
-
-
+@using (Html.BeginForm("SignUPStartUp", "Login", FormMethod.Post, new {enctype = "multipart/form-data" }))
+{
  <div class="signinform">
       <h1>Welcome Entrepreneurs</h1>
         <!-- container -->
@@ -18,48 +18,53 @@
             <div class="w3l-form-info">
                 <div class="w3_info">
                     <h2>SignUp Here</h2>
-                    <form action="#" method="post">
+                     
+                   
                         <div class="input-group">
                             <span><i class="fa fa-user" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Name" required="" id="Email" name="Email">
+                            <input type="text" placeholder="Name" required="" id="Pname" name="Pname">
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-book" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Address" required="" id="Password" name="Password">
+                            <input type="text" placeholder="Address" required="" id="Paddress" name="Paddress">
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-calendar" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Date Of Birth" required="" id="Password" name="Password">
+                            <input type="text" placeholder="Date Of Birth (YYYY/MM/DD)" required="" id="Pdob" name="Pdob">
                         </div>
                         <div class="input-group">
-                            <span><i class="fas fa-genderless" ariaaria-hidden="true"></i></span>
-                            <input type="text" placeholder="Gender" required="" id="Password" name="Password">
+                           <span><i class="fa fa-venus-mars" ariaaria-hidden="true"></i></span>
+                             <input type="text" placeholder="Gender" required="" id="Pgender" name="Pgender">
                         </div>
+
                         <div class="input-group">
                             <span><i class="fas fa-phone" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Phone Number" required="" id="Password" name="Password">
+                            <input type="text" placeholder="Phone Number" required="" id="Pphone" name="Pphone">
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-graduation-cap" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Qualification" required="" id="Password" name="Password">
+                            <input type="text" placeholder="Qualification" required="" id="Pqualification" name="Pqualification">
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-user" aria-hidden="true"></i></span>
-                            <input type="email" placeholder="Email Address" required="" id="Password" name="Password">
+                            <input type="email" placeholder="Email Address" required="" id="Pemail" name="Pemail">
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-key" aria-hidden="true"></i></span>
-                            <input type="password" placeholder="Password" required="" id="Password" name="Password">
+                            <input type="password" placeholder="Password" required="" id="Ppassword" name="Ppassword">
                         </div>
-                        <div class="input-group">
-                            <span><i class="fas fa-image" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Your Image" required="" id="Password" name="Password">
+                        <div>
+                            <span>@*<i class="fas fa-image" aria-hidden="true"></i>*@Your Photo</span>
+                            
+                            <input type="file" id="file" name="file" accept="image/*" />
                         </div>
                         
 
                        
                         <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
-                    </form>
+
+
+                    
                      @if (TempData["ErrMsg"]!= null)
                                     {
                                         <label style="color:red">
@@ -76,3 +81,4 @@
         <!-- footer -->
         
 </div>
+}
