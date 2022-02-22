@@ -100,6 +100,18 @@ namespace IdeasAndInvestors.Controllers
             }
             return View();
         }
+        public JsonResult CheckEmail(string Email)
+        {
+            var chkEmail=bkDb.PersonMasters.Where(q=>q.Pemail == Email).Count();
+            if (chkEmail > 0)
+            {
+                return Json(false);
+            }
+            else
+            {
+                return Json(true);
+            }
+        }
         public IActionResult AboutUs()
         {
             return View();

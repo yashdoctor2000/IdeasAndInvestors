@@ -91,9 +91,13 @@
 @RenderBody()
 @if (IsSectionDefined("cpValidation"))
  {
-    @RenderSection("cpValidation",false)
- }
- <!-- grids block 5 -->
+        @RenderSection("cpValidation",false)
+    }
+    else if (IsSectionDefined("StartUpValidation"))
+    {
+        @RenderSection("StartUpValidation",false)
+    }
+    <!-- grids block 5 -->
  <section class="w3l-footer-29-main" id="footer">
   <div class="footer-29">
     <div class="grids-forms-1 pb-5">

@@ -8,7 +8,22 @@
 
 <script src="~/lib/bootstrap/dist/js/bootstrap.esm.min.js"></script>
 <link rel="stylesheet" href="~/template/assets/css/login-style.css">
-@using (Html.BeginForm("SignUPStartUp", "Login", FormMethod.Post, new {enctype = "multipart/form-data" }))
+
+<style>    
+    label.error.fail-alert {
+/*border: 2px solid red;*/
+border-radius: 4px;
+line-height: 1;
+/*padding: 10px;*/
+/*background: #ffe6eb;*/
+color:red;
+/*margin-left:150px;
+margin-top:30px;*/
+}
+</style>
+
+
+@using (Html.BeginForm("SignUPStartUp", "Login", FormMethod.Post,new {id="startupval", enctype = "multipart/form-data" }))
 {
  <div class="signinform">
       <h1>Welcome Entrepreneurs</h1>
@@ -39,7 +54,7 @@
 
                         <div class="input-group">
                             <span><i class="fas fa-phone" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Phone Number" required="" id="Pphone" name="Pphone">
+                            <input type="text" @*style="position:relative; left:30px"*@ placeholder="Phone Number" required="" id="Pphone" name="Pphone">
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-graduation-cap" aria-hidden="true"></i></span>
@@ -56,7 +71,7 @@
                         <div>
                             <span>@*<i class="fas fa-image" aria-hidden="true"></i>*@Your Photo</span>
                             
-                            <input type="file" id="file" name="file" accept="image/*" />
+                            <input type="file" id="file" name="file" accept="image/*" required="" />
                         </div>
                         
 
@@ -81,4 +96,59 @@
         <!-- footer -->
         
 </div>
+}
+@section StartUpValidation
+{
+    <script type="text/javascript">
+        //following is called jquery validation plugin
+        $(document).ready(function(){
+
+            $("#startupval").validate({
+                errorClass: "error fail-alert",
+
+                rules: {
+
+                    Pphone: {
+                      required: true,
+		              number: true,
+		              maxlength: 10,
+                      minlength: 10
+                      
+                    },
+
+                    
+                    Pemail: {
+                        
+                        remote: {
+                            url: '@Url.Action("CheckEmail","Login")',
+                            data: {
+                                'Email': function () {
+                                    return $("#Pemail").val();
+                                }
+                            }
+                        }                        
+                    }
+                   
+                },
+                messages: {
+
+                    
+                    
+                    Pemail: {
+                        
+                        remote:'Email Address Already exist',
+                        focus() { }
+                    }
+                },
+                errorPlacement:function(error,element){
+                    error.insertAfter(element.parent());
+                }
+            })
+
+        });
+
+
+
+    </script>
+
 }
