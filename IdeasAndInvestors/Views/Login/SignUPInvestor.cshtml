@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<IdeasAndInvestors.Models.QuestionMaster>
+
 @{
     ViewData["Title"] = "SignUPInvestor";
     Layout = "~/Views/Shared/_IdeasInvestorsLayout.cshtml";
@@ -7,65 +8,96 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.esm.min.js"></script>
 <link rel="stylesheet" href="~/template/assets/css/login-style.css">
 
+<script type="text/javascript">
+function gotoanswer()
+{
+    var e = document.getElementById("Panswer");
+    e.focus();
+}
+</script>
+
+<style>    
+    label.error.fail-alert {
+/*border: 2px solid red;*/
+border-radius: 4px;
+line-height: 1;
+/*padding: 10px;*/
+/*background: #ffe6eb;*/
+color:red;
+/*margin-left:150px;
+margin-top:30px;*/
+}
+</style>
+
+@using (Html.BeginForm("SignUPInvestor", "Login", FormMethod.Post,new {id="investorval", enctype = "multipart/form-data" }))
+{
+
  <div class="signinform">
-      <h1>Welcome Entrepreneurs</h1>
+      <h1>Welcome Investors</h1>
         <!-- container -->
         <div class="container">
             <!-- main content -->
             <div class="w3l-form-info">
                 <div class="w3_info">
                     <h2>SignUp Here</h2>
-                    <form action="#" method="post">
+                    
                         <div class="input-group">
                             <span><i class="fa fa-user" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Name" required="" id="Name" name="Name">
+                            <input type="text" placeholder="Name" required="" id="Pname" name="Pname">
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-book" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Address" required="" id="Address" name="Address">
+                            <input type="text" placeholder="Address" required="" id="Paddress" name="Paddress">
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-calendar" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Date Of Birth (YYYY/MM/DD)" required="" id="DOB" name="DOB">
+                            <input type="text" placeholder="Date Of Birth (YYYY/MM/DD)" required="" id="Pdob" name="Pdob">
                         </div>
                         <div class="input-group">
                            <span><i class="fa fa-venus-mars" ariaaria-hidden="true"></i></span>
-                             <input type="text" placeholder="Gender" required="" id="Gender" name="Gender">
+                             <input type="text" placeholder="Gender" required="" id="Pgender" name="Pgender">
                         </div>
 
                         <div class="input-group">
                             <span><i class="fas fa-phone" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Phone Number" required="" id="PNumber" name="PNumber">
+                            <input type="text" placeholder="Phone Number" required="" id="Pphone" name="Pphone">
                         </div>
-                        <div class="input-group">
-                            <span><i class="fas fa-graduation-cap" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Qualification" required="" id="Qualification" name="Qualification">
-                        </div>
+                        
                         <div class="input-group">
                             <span><i class="fas fa-user" aria-hidden="true"></i></span>
-                            <input type="email" placeholder="Email Address" required="" id="Email" name="Email">
+                            <input type="email" placeholder="Email Address" required="" id="Pemail" name="Pemail">
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-key" aria-hidden="true"></i></span>
-                            <input type="password" placeholder="Password" required="" id="Password" name="Password">
+                            <input type="password" placeholder="Password" required="" id="Ppassword" name="Ppassword">
+                        </div>
+                         Security Question
+                         <div class="">
+                             <select id="Pqid" name="Pqid" onchange="gotoanswer()">
+                                 <option value="" selected="selected">Select Question</option>
+                                 @if (Model != null)
+                                {
+                                    @foreach (var q in Model)
+                                    {
+                                        <option value="@q.Qid">@q.Questiontext</option>
+                                    }    
+                                }                            
+                            </select>
                         </div>
                         <div class="input-group">
-                            <span><i class="fas fa-image" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Your Image" required="" id="Image" name="Image">
+                            <span><i class="fa fa-arrow-right"></i></span>
+                            <input type="text" id="Panswer" name="Panswer" required="">
                         </div>
-                        
 
+
+                        
+                        <div>
+                            <span>@*<i class="fas fa-image" aria-hidden="true"></i>*@Your Photo</span>
+                            
+                            <input type="file" id="file" name="file" accept="image/*" required="" />
+                        </div>
                        
                         <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
-
-
-                    </form>
-                     @if (TempData["ErrMsg"]!= null)
-                                    {
-                                        <label style="color:red">
-                                            @TempData["ErrMsg"]
-                                        </label>
-                                    }
                     
                    
                 </div>
@@ -76,4 +108,61 @@
         <!-- footer -->
         
 </div>
+}
+
+@section InvestorValidation
+{
+    <script type="text/javascript">
+        //following is called jquery validation plugin
+        $(document).ready(function(){
+
+            $("#investorval").validate({
+                errorClass: "error fail-alert",
+
+                rules: {
+
+                    Pphone: {
+                      required: true,
+		              number: true,
+		              maxlength: 10,
+                      minlength: 10
+                      
+                    },
+
+                    
+                    Pemail: {
+                        
+                        remote: {
+                            url: '@Url.Action("CheckEmail","Login")',
+                            data: {
+                                'Email': function () {
+                                    return $("#Pemail").val();
+                                }
+                            }
+                        }                        
+                    }
+                   
+                },
+                messages: {
+
+                    
+                    
+                    Pemail: {
+                        
+                        remote:'Email Address Already exist',
+                        focus() { }
+                    }
+                },
+                errorPlacement:function(error,element){
+                    error.insertAfter(element.parent());
+                }
+            })
+
+        });
+
+
+
+    </script>
+
+}
 

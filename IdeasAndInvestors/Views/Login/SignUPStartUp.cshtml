@@ -54,7 +54,7 @@ margin-top:30px;*/
 
                         <div class="input-group">
                             <span><i class="fas fa-phone" aria-hidden="true"></i></span>
-                            <input type="text" @*style="position:relative; left:30px"*@ placeholder="Phone Number" required="" id="Pphone" name="Pphone">
+                            <input type="text" placeholder="Phone Number" required="" id="Pphone" name="Pphone">
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-graduation-cap" aria-hidden="true"></i></span>
@@ -77,15 +77,6 @@ margin-top:30px;*/
 
                        
                         <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
-
-
-                    
-                     @if (TempData["ErrMsg"]!= null)
-                                    {
-                                        <label style="color:red">
-                                            @TempData["ErrMsg"]
-                                        </label>
-                                    }
                     
                    
                 </div>

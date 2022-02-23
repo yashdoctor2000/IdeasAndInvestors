@@ -142,6 +142,13 @@ input[type="Password"] {
 	position: relative;
 }
 
+.input-group-question {
+	margin-bottom: 25px;
+	padding: 0px 0px;
+	border-bottom: 1px solid #e5e5e5;
+	position: relative;
+}
+
 .btn-block {
 	display: block;
 	width: 50%;

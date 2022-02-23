@@ -28,7 +28,7 @@ namespace IdeasAndInvestors.Models
         [Column(TypeName = "varchar(50)")]
         public string Pqualification { get; set; }
 
-        [Column(TypeName = "varchar(20)")]
+        [Column(TypeName = "varchar(100)")]
         public string Pemail { get; set; }
 
         [Column(TypeName = "varchar(20)")]

@@ -33,16 +33,26 @@ namespace IdeasAndInvestors.Controllers
             var email = Convert.ToString(frm["Email"]);
             var password = Convert.ToString(frm["Password"]);
             var rdFound = bkDb.PersonMasters.Where(usr => usr.Pemail == email && usr.Ppassword == password).FirstOrDefault();
-            if (rdFound != null)
+            if (rdFound.Prollid==2)
             {
-                TempData["ErrMsg"] = "Login Successfull";
+                return RedirectToAction("Home","StartUp");
             }
+            else if (rdFound.Prollid==3)
+            {
+                return RedirectToAction("Home","Investor");
+            }
+            else if (rdFound.Prollid == 1)
+            {
+                return RedirectToAction("Home", "Admin");
+            }
+
             else
             {
                 TempData["ErrMsg"] = "Invalid Email or Password";
+                return View();
             }
-            
-            return View();
+
+           
         }
         [HttpGet]
         public IActionResult SignUPStartUp()
@@ -66,16 +76,39 @@ namespace IdeasAndInvestors.Controllers
             
             personMaster.Pqid = 0;
             personMaster.Panswer = "NoAnswer";
-            personMaster.Prollid = 1;//1 for startup
+            personMaster.Prollid = 2;//2 for startup
             bkDb.PersonMasters.Add(personMaster);
             bkDb.SaveChanges();
             return RedirectToAction("Login");
 
         }
+
+        [HttpGet]
         public IActionResult SignUPInvestor()
         {
-            return View();
+            var qList = bkDb.QuestionMasters.ToList();
+            return View(qList);
         }
+        [HttpPost]
+        public IActionResult SignUPInvestor(PersonMaster personMaster,IFormFile file)
+        {
+            string uniqueImageName = null;
+            if (file != null)
+            {
+                string uploadimgfoldername = Path.Combine(henv.WebRootPath, "images\\StartupImage");
+                uniqueImageName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                string finalPath = Path.Combine(uploadimgfoldername, uniqueImageName);
+                file.CopyTo(new FileStream(finalPath, FileMode.Create));
+                personMaster.Pimage = "images\\StartupImage" + uniqueImageName;
+            }
+            personMaster.Pqualification = "NoAnswer";
+            personMaster.Prollid = 3;//3 for investors
+            bkDb.PersonMasters.Add(personMaster);
+            bkDb.SaveChanges();
+            return RedirectToAction("Login");
+            
+        }
+
         [HttpGet]
         public IActionResult ChangePassword()
         {
