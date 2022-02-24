@@ -35,15 +35,15 @@ namespace IdeasAndInvestors.Controllers
             var rdFound = bkDb.PersonMasters.Where(usr => usr.Pemail == email && usr.Ppassword == password).FirstOrDefault();
             if (rdFound.Prollid==2)
             {
-                return RedirectToAction("Home","StartUp");
+                return RedirectToAction("StartUpHome", "StartUp", new {rdFound.Pid});
             }
             else if (rdFound.Prollid==3)
             {
-                return RedirectToAction("Home","Investor");
+                return RedirectToAction("InvestorHome","Investor");
             }
             else if (rdFound.Prollid == 1)
             {
-                return RedirectToAction("Home", "Admin");
+                return RedirectToAction("AdminHome", "Admin");
             }
 
             else

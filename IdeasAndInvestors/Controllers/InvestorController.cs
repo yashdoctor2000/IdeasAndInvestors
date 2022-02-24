@@ -4,7 +4,7 @@ namespace IdeasAndInvestors.Controllers
 {
     public class InvestorController : Controller
     {
-        public IActionResult Home()
+        public IActionResult InvestorHome()
         {
             return View();
         }

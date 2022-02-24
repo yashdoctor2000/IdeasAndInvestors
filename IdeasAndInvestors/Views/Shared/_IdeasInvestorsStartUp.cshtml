@@ -69,16 +69,24 @@
             <a class="nav-link" href="@Url.Action("ContactUs","Login")">Contact</a>
           </li>
           
+
+
+          
            <li>   
-             @*<div class="dropdown" style="position:relative; left:160px; top:0px">
+             <div class="dropdown" style="position:relative; left:90px; top:0px">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                SignUp Here
-                </button>
+                
+                                    
+                                       <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                                    
+                                </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="@Url.Action("SignUPStartUp","Login")">SignUp For Entrepreneurs</a></li>
-                <li><a class="dropdown-item" href="@Url.Action("SignUPInvestor","Login")">SignUp For Investors</a></li>
+                 <li><a class="dropdown-item">@TempData["ErrMsg"]</a></li>
+                <li><a class="dropdown-item" href="@Url.Action("StartUpFeedback","StartUp")">Feedback</a></li>
+                <li><a class="dropdown-item" href="@Url.Action("StartUpComplain","StartUp")">Complain</a></li>
+                <li><a class="dropdown-item" href="@Url.Action("Home","Login")">Sign Out</a></li>
                 </ul>
-                </div>*@
+                </div>
                 
                 </li>
         </ul>
