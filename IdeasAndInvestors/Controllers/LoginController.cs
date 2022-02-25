@@ -33,24 +33,27 @@ namespace IdeasAndInvestors.Controllers
             var email = Convert.ToString(frm["Email"]);
             var password = Convert.ToString(frm["Password"]);
             var rdFound = bkDb.PersonMasters.Where(usr => usr.Pemail == email && usr.Ppassword == password).FirstOrDefault();
-            if (rdFound.Prollid==2)
+            if (rdFound != null)
             {
-                return RedirectToAction("StartUpHome", "StartUp", new {rdFound.Pid});
-            }
-            else if (rdFound.Prollid==3)
-            {
-                return RedirectToAction("InvestorHome","Investor");
-            }
-            else if (rdFound.Prollid == 1)
-            {
-                return RedirectToAction("AdminHome", "Admin");
+                if (rdFound.Prollid == 2)
+                {
+                    return RedirectToAction("StartUpHome", "StartUp", new { rdFound.Pid });
+                }
+                else if (rdFound.Prollid == 3)
+                {
+                    return RedirectToAction("InvestorHome", "Investor", new { rdFound.Pid });
+                }
+                else if (rdFound.Prollid == 1)
+                {
+                    return RedirectToAction("AdminHome", "Admin");
+                }
             }
 
-            else
-            {
+            
+            
                 TempData["ErrMsg"] = "Invalid Email or Password";
                 return View();
-            }
+            
 
            
         }
