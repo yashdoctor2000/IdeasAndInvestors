@@ -1,0 +1,48 @@
+﻿@model IEnumerable<IdeasAndInvestors.Models.PersonMaster>
+@{
+    ViewData["Title"] = "AdminViewInvestorDetails";
+    Layout = "~/Views/Shared/_IdeasInvestorsAdmin.cshtml";
+}
+
+<table id="booking" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Email</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+            <tr>
+                <td>
+                    @user.Pid
+                </td>
+                <td>
+                    @user.Pname
+                </td>
+                <td>
+                    @user.Paddress
+                </td>
+                <td>
+                    @user.Pphone
+                </td>
+                <td>
+                    @user.Pemail
+                </td>
+
+
+            </tr>
+        }
+            </tbody>
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function() {
+    $('#booking').DataTable();
+} );    
+    </script>
+

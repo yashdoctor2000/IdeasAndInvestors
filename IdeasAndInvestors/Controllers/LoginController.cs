@@ -74,7 +74,7 @@ namespace IdeasAndInvestors.Controllers
                 uniqueImageName = Guid.NewGuid().ToString() + "_" + file.FileName;
                 string finalPath = Path.Combine(uploadimgfoldername, uniqueImageName);
                 file.CopyTo(new FileStream(finalPath, FileMode.Create));
-                personMaster.Pimage = "images\\StartupImage" + uniqueImageName;
+                personMaster.Pimage = "images\\StartupImage\\" + uniqueImageName;
             }
             
             personMaster.Pqid = 0;
