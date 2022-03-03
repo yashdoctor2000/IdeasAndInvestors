@@ -1,0 +1,47 @@
+﻿@model IEnumerable<IdeasAndInvestors.Models.CategoryMaster>
+@{
+    ViewData["Title"] = "AdminCategoryView";
+    Layout = "~/Views/Shared/_IdeasInvestorsAdmin.cshtml";
+}
+
+<center><h1>Category Details</h1> </center>
+<a class="btn btn-info" href="@Url.Action("AddCategory","Admin")" >Add Category</a><br /><br />
+<table id="booking" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Category</th>
+                <th>Action</th>
+                
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+            <tr>
+                <td>
+                    @user.Catid
+                </td>
+                <td>
+                    @user.Catname
+                    
+                </td>
+                <td>
+                    <a class="btn btn-info" href="@Url.Action("EditCategory","Admin")" >Edit</a>&nbsp;
+                    <a class="btn btn-info" href="@Url.Action("DeleteCategory","Admin")" >Delete</a>
+                </td>
+                
+
+
+            </tr>
+        }
+            </tbody>
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function() {
+    $('#booking').DataTable();
+} );    
+    </script>
+

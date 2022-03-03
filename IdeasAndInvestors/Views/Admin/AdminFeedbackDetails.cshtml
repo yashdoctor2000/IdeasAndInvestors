@@ -1,0 +1,72 @@
+﻿@model IEnumerable<IdeasAndInvestors.Models.FeedbackMaster>
+@{
+    ViewData["Title"] = "AdminFeedbackDetails";
+    Layout = "~/Views/Shared/_IdeasInvestorsAdmin.cshtml";
+    var pdetails = (List<IdeasAndInvestors.Models.PersonMaster>)ViewBag.perDetails;
+}
+
+<center><h1>Feedback Details</h1> </center>
+<table id="booking" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Feedback details</th>
+                <th>Customer Experience</th>
+                <th>StartUp/Investor</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+            <tr>
+                <td>
+                    @user.Pid
+                </td>
+                <td>
+                    @foreach(var per in pdetails)
+                    {
+                        @if (user.Pid == per.Pid)
+                        {
+                            @per.Pname
+                        }
+                    }
+                    
+                </td>
+                <td>
+                    @user.Fdetails
+                </td>
+                <td>
+                    @user.Experiencerate
+                </td>
+                <td>
+                    @foreach(var per in pdetails)
+                    {
+                        @if(user.Pid == per.Pid)
+                        {
+                            @if (per.Prollid == 2)
+                            {
+                                <label>StartUp</label>
+                            }
+                            @if (per.Prollid == 3)
+                            {
+                                <label>Investor</label>
+                            }
+
+                }
+                    }
+                </td>
+                
+
+
+            </tr>
+        }
+            </tbody>
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function() {
+    $('#booking').DataTable();
+} );    
+    </script>

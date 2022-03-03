@@ -23,11 +23,14 @@ namespace IdeasAndInvestors.Controllers
             {
                 ViewData["ErrMsg"] = "Welcome " + rdFound.Pname;
             }
+            TempData["perId"] = HttpContext.Session.GetString("Pid");
             return View();
         }
         [HttpGet]
         public IActionResult InvestorComplain()
         {
+            var Pid= Convert.ToInt32(
+                HttpContext.Session.GetString("Pid"));
             return View();
         }
         [HttpPost]
@@ -40,7 +43,7 @@ namespace IdeasAndInvestors.Controllers
             bkDb.ComplainMasters.Add(complainMaster);
             bkDb.SaveChanges();
             TempData["ComplainMsg"] = "Your complain is submitted successfully!";
-            return View();
+            TempData["perId"] = HttpContext.Session.GetString("Pid");
             return View();
         }
         [HttpGet]
