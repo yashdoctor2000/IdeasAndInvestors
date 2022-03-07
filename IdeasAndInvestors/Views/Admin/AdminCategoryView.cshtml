@@ -29,8 +29,8 @@
                     
                 </td>
                 <td>
-                    <a class="btn btn-info" href="@Url.Action("EditCategory","Admin")" >Edit</a>&nbsp;
-                    <a class="btn btn-info" href="@Url.Action("DeleteCategory","Admin")" >Delete</a>
+                    <a class="btn btn-info" href="@Url.Action("EditCategory","Admin",new {Catid=@user.Catid})" >Edit</a>&nbsp;
+                    <a class="btn btn-info" href="@Url.Action("DeleteCategory","Admin", new {Catid=@user.Catid})" >Delete</a>
                 </td>
                 
 
