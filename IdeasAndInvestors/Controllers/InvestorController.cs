@@ -23,7 +23,7 @@ namespace IdeasAndInvestors.Controllers
             {
                 ViewData["ErrMsg"] = "Welcome " + rdFound.Pname;
             }
-            TempData["perId"] = HttpContext.Session.GetString("Pid");
+            TempData["Pid"] = HttpContext.Session.GetString("Pid");
             return View();
         }
         [HttpGet]
@@ -43,7 +43,7 @@ namespace IdeasAndInvestors.Controllers
             bkDb.ComplainMasters.Add(complainMaster);
             bkDb.SaveChanges();
             TempData["ComplainMsg"] = "Your complain is submitted successfully!";
-            TempData["perId"] = HttpContext.Session.GetString("Pid");
+            TempData["Pid"] = complainMaster.Pid;
             return View();
         }
         [HttpGet]
@@ -63,6 +63,7 @@ namespace IdeasAndInvestors.Controllers
             bkDb.FeedbackMasters.Add(feedbackMaster);
             bkDb.SaveChanges();
             TempData["FeedbackMsg"] = "Thankyou for your feedback!";
+            TempData["Pid"]=feedbackMaster.Pid;
             return View();
             
         }

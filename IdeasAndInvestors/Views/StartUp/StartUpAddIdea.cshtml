@@ -1,0 +1,114 @@
+﻿@model IEnumerable<IdeasAndInvestors.Models.CategoryMaster>
+
+@{
+    ViewData["Title"] = "StartUpAddIdea";
+    Layout = "~/Views/Shared/_IdeasInvestorsStartUp.cshtml";
+}
+@using (Html.BeginForm("StartUpAddIdea","StartUp",FormMethod.Post,new {enctype = "multipart/form-data" }))
+{
+
+    <!-- CSS Stylesheet -->
+   @* <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"/>*@
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.esm.min.js"></script>
+<link rel="stylesheet" href="~/template/assets/css/login-style.css">
+
+
+ <div class="signinform">
+      <h1>Add Idea</h1>
+        <!-- container -->
+        <div class="container">
+            <!-- main content -->
+            <div class="w3l-form-info">
+                <div class="w3_info">
+                   
+                    
+                        <div class="input-group">
+                            <span><i class="fas fa-lightbulb-o" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Idea Title" required="" id="Ititle" name="Ititle">
+                        </div>
+                        Select Category
+                         <div class="">
+                             <select id="Catid" name="Catid">
+                                 <option value="" selected="selected">Select</option>
+                                 @if (Model != null)
+                                {
+                                    @foreach (var q in Model)
+                                    {
+                                        <option value="@q.Catid">@q.Catname</option>
+                                    }    
+                                }                            
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <span><i class="fas fa-money" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Investment Needed" required="" id="IinvestmentNeeded" name="IinvestmentNeeded">
+                        </div>
+                        <div class="input-group">
+                            <span><i class="fas fa-comments" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Idea Description" required="" id="Idescription" name="Idescription">
+                        </div>
+                        <div class="input-group">
+                            <span><i class="fas fa-clock" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Idea Duration" required="" id="IinvestmentDuration" name="IinvestmentDuration">
+                        </div>
+                        <div class="input-group">
+                            <span><i class="fa fa-youtube" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Idea Video" required="" id="Ividurl" name="Ividurl">
+                        </div>
+                        <button type="button" id="button">Open Video</button>
+                        <div class="input-group">
+                            <span><i class="fas fa-gift" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Reward less then 10%" required="" id="IRFLT10Pnt" name="IRFLT10Pnt">
+                        </div>
+                        <div class="input-group">
+                            <span><i class="fas fa-gift" aria-hidden="true"></i></span>
+                            <input type="text" placeholder="Reward between 10% - 20%" required="" id="IRFLT20Pnt" name="IRFLT20Pnt">
+                        </div>
+                        <div>
+                            <span>@*<i class="fas fa-image" aria-hidden="true"></i>*@Idea Image</span>
+                            
+                            <input type="file" id="file" name="file" accept="image/*" required="" />
+                        </div>
+
+
+                        
+
+                        
+                        <button class="btn btn-primary btn-block" type="submit">Submit Idea</button>
+                 
+                     @if (TempData["ComplainMsg"]!= null)
+                                    {
+                                        <label style="color:red">
+                                            @TempData["ComplainMsg"]
+                                        </label>
+                                    }
+                    
+                    
+                </div>
+            </div>
+            <!-- //main content -->
+        </div>
+        <!-- //container -->
+        <!-- footer -->
+        
+</div>
+        <!-- footer -->
+}    
+
+    <!-- fontawesome v5-->
+   
+
+<script>
+$(document).ready(function(){
+
+    $('#button').click(function(e) {  
+        var inputvalue = $("#Ividurl").val();
+	window.open(inputvalue,"_blank");
+    });
+});
+</script>
+
+
+

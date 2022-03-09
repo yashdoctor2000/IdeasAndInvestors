@@ -27,8 +27,8 @@ namespace IdeasAndInvestors.Controllers
         }
         public IActionResult AdminViewStartUpDetails()
         {
-            var investorDetails = bkDb.PersonMasters.Where(usr => usr.Prollid == 2).ToList();
-            return View(investorDetails);
+            var startUpDetails = bkDb.PersonMasters.Where(usr => usr.Prollid == 2).ToList();
+            return View(startUpDetails);
         }
         public IActionResult AdminComplainDetails()
         {

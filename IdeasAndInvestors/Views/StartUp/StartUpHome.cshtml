@@ -1,6 +1,71 @@
-﻿
+﻿@model IEnumerable<IdeasAndInvestors.Models.IdeaMaster>
 @{
     ViewData["Title"] = "Home";
     Layout = "~/Views/Shared/_IdeasInvestorsStartUp.cshtml";
 }
-<h1>Welcome StartUp</h1>
+
+<center><h1>Your Idea's</h1> </center>
+<a class="btn btn-info" href="@Url.Action("StartUpAddIdea","StartUp")" >Add Idea</a><br /><br />
+<table id="booking" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Investment Needed</th>
+                <th>Investment Duration</th>
+                <th>Investment Date</th>
+                <th>Video Link</th>
+                <th>Image</th>
+                <th>Action</th>
+                
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+            <tr>
+                <td>
+                    @user.Ititle
+                </td>
+                <td>
+                    @user.Idescription
+                    
+                </td>
+                <td>
+                    @user.IinvestmentNeeded
+                    
+                </td>
+                <td>
+                    @user.IinvestmentDuration
+                    
+                </td>
+                <td>
+                    @user.Idate 
+                </td>
+                <td>
+                    <a href="@user.Ividurl" target="_blank" >@user.Ividurl</a>   
+                </td>
+                 <td>
+                    @if (!string.IsNullOrWhiteSpace(@user.Iimage))
+                    {
+                        <img width="100px" height="100px" src="@Url.Content("~/" + user.Iimage)" alt="No image found">
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-info" href="@Url.Action("EditCategory","Admin",new {Catid=@user.Catid})" >Edit</a>&nbsp;
+                    <a class="btn btn-info" href="@Url.Action("DeleteCategory","Admin", new {Catid=@user.Catid})" >Delete</a>
+                </td>
+                
+
+
+            </tr>
+        }
+            </tbody>
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function() {
+    $('#booking').DataTable();
+} );    
+    </script>
