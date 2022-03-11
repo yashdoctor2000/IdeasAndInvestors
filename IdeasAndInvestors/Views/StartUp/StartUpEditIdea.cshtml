@@ -1,10 +1,11 @@
-﻿@model IEnumerable<IdeasAndInvestors.Models.CategoryMaster>
-
+﻿@model IdeasAndInvestors.Models.IdeaMaster
 @{
-    ViewData["Title"] = "StartUpAddIdea";
+    ViewData["Title"] = "StartUpEditIdea";
     Layout = "~/Views/Shared/_IdeasInvestorsStartUp.cshtml";
+    var qList = (List<IdeasAndInvestors.Models.CategoryMaster>)ViewBag.qList;
 }
-@using (Html.BeginForm("StartUpAddIdea","StartUp",FormMethod.Post,new {enctype = "multipart/form-data" }))
+
+@using (Html.BeginForm("StartUpEditIdea","StartUp",FormMethod.Post,new {enctype = "multipart/form-data" }))
 {
 
     <!-- CSS Stylesheet -->
@@ -14,69 +15,70 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.esm.min.js"></script>
 <link rel="stylesheet" href="~/template/assets/css/login-style.css">
 
-
- <div class="signinform">
-      <h1>Add Idea</h1>
+<h1>Edit your <label><b>"@Model.Ititle"</b></label> Idea</h1>
+ <div class="signinform">   
         <!-- container -->
         <div class="container">
             <!-- main content -->
             <div class="w3l-form-info">
                 <div class="w3_info">
                    
-                    <input type="hidden" value="@TempData["Pid"]" id="Pid" name="Pid">
+                    <input type="hidden"  id="Iid" name="Iid" value="@Model.Iid" >
+                    <input type="hidden" id="Pid" name="Pid" value="@Model.Pid">
+                    <input type="hidden" id="Iimage" name="Iimage" value="@Model.Iimage">
+                    <input type="hidden" id="Idate" name="Idate" value="@Model.Idate">
+                    
                         <div class="input-group">
                             <span><i class="fas fa-lightbulb-o" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Idea Title" required="" id="Ititle" name="Ititle">
+                            <input type="text" placeholder="@Model.Ititle"  id="Ititle" value="@Model.Ititle" name="Ititle">
                         </div>
                         Select Category
                          <div class="">
                              <select id="Catid" name="Catid">
-                                 <option value="" selected="selected">Select</option>
+                                 <option value="" selected="selected" required="">Select</option>
                                  @if (Model != null)
                                 {
-                                    @foreach (var q in Model)
+                                    @foreach (var q in qList)
                                     {
                                         <option value="@q.Catid">@q.Catname</option>
                                     }    
                                 }                            
                             </select>
                         </div>
+                       
                         <div class="input-group">
                             <span><i class="fas fa-money" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Investment Needed" required="" id="IinvestmentNeeded" name="IinvestmentNeeded">
+                            <input type="text" placeholder="@Model.IinvestmentNeeded"  value="@Model.IinvestmentNeeded" id="IinvestmentNeeded" name="IinvestmentNeeded">
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-comments" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Idea Description" required="" id="Idescription" name="Idescription">
+                            <input type="text" placeholder="@Model.Idescription" value="@Model.Idescription" id="Idescription" name="Idescription">
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-clock" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Idea Duration" required="" id="IinvestmentDuration" name="IinvestmentDuration">
+                            <input type="text" placeholder="@Model.IinvestmentDuration" value="@Model.IinvestmentDuration" id="IinvestmentDuration" name="IinvestmentDuration">
                         </div>
                         <div class="input-group">
                             <span><i class="fa fa-youtube" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Idea Video" required="" id="Ividurl" name="Ividurl">
+                            <input type="text" placeholder="Idea Video" value="@Model.Ividurl" id="Ividurl" name="Ividurl">
                         </div>
                         <button type="button" id="button">Open Video</button>
                         <div class="input-group">
                             <span><i class="fas fa-gift" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Reward less then 10%" required="" id="IRFLT10Pnt" name="IRFLT10Pnt">
+                            <input type="text" placeholder="Reward less then 10%" value="@Model.IRFLT10Pnt"  id="IRFLT10Pnt" name="IRFLT10Pnt">
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-gift" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Reward between 10% - 20%" required="" id="IRFLT20Pnt" name="IRFLT20Pnt">
+                            <input type="text" placeholder="Reward between 10% - 20%" value="@Model.IRFLT20Pnt" id="IRFLT20Pnt" name="IRFLT20Pnt">
                         </div>
+                        
                         <div>
                             <span>@*<i class="fas fa-image" aria-hidden="true"></i>*@Idea Image</span>
                             
-                            <input type="file" id="file" name="file" accept="image/*" required="" />
+                            <input type="file" id="file" name="file" accept="image/*"  />
                         </div>
-
-
                         
-
-                        
-                        <button class="btn btn-primary btn-block" type="submit">Submit Idea</button>
+                        <button class="btn btn-primary btn-block" type="submit">Edit Idea</button>
                  
                      @if (TempData["ComplainMsg"]!= null)
                                     {
@@ -85,7 +87,7 @@
                                         </label>
                                     }
                     
-                    
+                    @*<p class="account">Don't have an account? <a href="@Url.Action("SignUP","Login")">Sign up</a></p>*@
                 </div>
             </div>
             <!-- //main content -->
@@ -95,11 +97,7 @@
         
 </div>
         <!-- footer -->
-}    
-
-    <!-- fontawesome v5-->
-   
-
+} 
 <script>
 $(document).ready(function(){
 
@@ -109,6 +107,4 @@ $(document).ready(function(){
     });
 });
 </script>
-
-
 
