@@ -3,7 +3,7 @@
     ViewData["Title"] = "EditCategory";
     Layout = "~/Views/Shared/_IdeasInvestorsAdmin.cshtml";
 }
-@using (Html.BeginForm("EditCategory","Admin",FormMethod.Post))
+@using (Html.BeginForm("EditCategory","Admin",FormMethod.Post, new{enctype = "multipart/form-data"}))
 {
 
     <!-- CSS Stylesheet -->
@@ -13,7 +13,7 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.esm.min.js"></script>
 <link rel="stylesheet" href="~/template/assets/css/login-style.css">
 
-
+<input type="hidden" id="Catimage" name="Catimage" value="@Model.Catimage">
  <div class="signinform">
       <h1>Edit <label><b>"@Model.Catname"</b></label> Category</h1>
         <!-- container -->
@@ -27,6 +27,11 @@
                         <div class="input-group">
                             <span><i class="fas fa-comment" aria-hidden="true"></i></span>
                             <input type="text" placeholder="Edited Name " required="" id="Catname" name="Catname">
+                        </div>
+                        <div>
+                            <span>@*<i class="fas fa-image" aria-hidden="true"></i>*@Category Image</span>
+                            
+                            <input type="file" id="file" name="file" accept="image/*" />
                         </div>
                         
                         <button class="btn btn-primary btn-block" type="submit">Submit Category</button>

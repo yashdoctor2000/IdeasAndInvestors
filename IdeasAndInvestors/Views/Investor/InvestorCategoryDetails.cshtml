@@ -1,0 +1,45 @@
+﻿@model IEnumerable<IdeasAndInvestors.Models.IdeaMaster>
+@{
+    ViewData["Title"] = "InvestorCategoryDetails";
+    Layout = "~/Views/Shared/_IdeasInvestorsInvestor.cshtml";
+}
+
+<section class="grids-4" id="properties">
+    <div id="grids4-block" class="py-5">
+       <div class="container py-md-3">
+			<div class="heading text-center mx-auto">
+      <h3 class="head">@TempData["CategoryName"] related startups</h3>
+      <p class="my-3 head"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+        Nulla mollis dapibus nunc, ut rhoncus
+        turpis sodales quis. Integer sit amet mattis quam.</p>
+    </div>
+            
+            <div class="row mt-5 pt-3">
+                @foreach (var idea in Model)
+            {
+                <div class="grids4-info  col-lg-4 col-md-6">
+                        <a href="#"><img style="width:420px;height:300px;" src="@Url.Content("~/"+idea.Iimage)" class="img-fluid" alt=""></a>
+                        @*<ul class="location-top">
+                            <li class="rent">For Rent</li>
+                            <li class="open-1">Open House</li>
+                        </ul>*@
+                        <div class="info-bg">
+                            <h5><a href="#">@idea.Ititle</a></h5>
+                            <p>Investment Needed :  $ @idea.IinvestmentNeeded</p>
+                            @*<ul>
+                                <li><span class="fa fa-bed"></span> 4 Beds</li>
+                                <li><span class="fa fa-bath"></span> 3 Baths</li>
+                                <li><span class="fa fa-share-square-o"></span> 1200 sq ft</li>
+                            </ul>*@
+                        </div>
+                    </div>
+                
+                 
+					
+					} 
+                   
+                </div>
+                
+           </div>
+    </div>
+</section>

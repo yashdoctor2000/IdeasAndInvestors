@@ -56,10 +56,18 @@ namespace IdeasAndInvestors.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddCategory(IFormCollection frm)
+        public IActionResult AddCategory(CategoryMaster categoryMaster,IFormFile file)
         {
-            CategoryMaster categoryMaster = new CategoryMaster();
-            categoryMaster.Catname= Convert.ToString(frm["Catname"]);
+            string uniqueImageName = null;
+            if (file != null)
+            {
+                string uploadimgfoldername = Path.Combine(henv.WebRootPath, "images\\CategoryImage\\");
+                uniqueImageName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                string finalPath = Path.Combine(uploadimgfoldername, uniqueImageName);
+                file.CopyTo(new FileStream(finalPath, FileMode.Create));
+                categoryMaster.Catimage = "images\\CategoryImage\\" + uniqueImageName;
+            }
+            
             bkDb.CategoryMasters.Add(categoryMaster);
             bkDb.SaveChanges();
             return RedirectToAction("AdminCategoryView");
@@ -80,7 +88,7 @@ namespace IdeasAndInvestors.Controllers
             }
         }
         [HttpPost]
-        public IActionResult EditCategory(CategoryMaster categorymaster)
+        public IActionResult EditCategory(CategoryMaster categorymaster,IFormFile file)
         {
             //var categoryMaster=new CategoryMaster();
             //var id = Convert.ToInt32(frm["Catid"]);
@@ -92,9 +100,24 @@ namespace IdeasAndInvestors.Controllers
             //    bkDb.SaveChanges();
 
             //}
-            bkDb.Entry(categorymaster).State = EntityState.Modified;
-            bkDb.SaveChanges();
-            return RedirectToAction("AdminCategoryView");
+            string uniqueImageName = null;
+            if (file != null)
+            {
+                string uploadimgfoldername = Path.Combine(henv.WebRootPath, "images\\CategoryImage\\");
+                uniqueImageName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                string finalPath = Path.Combine(uploadimgfoldername, uniqueImageName);
+                file.CopyTo(new FileStream(finalPath, FileMode.Create));
+                categorymaster.Catimage = "images\\CategoryImage\\" + uniqueImageName;
+                bkDb.Entry(categorymaster).State = EntityState.Modified;
+                bkDb.SaveChanges();
+                return RedirectToAction("AdminCategoryView");
+            }
+            else
+            {
+                bkDb.Entry(categorymaster).State = EntityState.Modified;
+                bkDb.SaveChanges();
+                return RedirectToAction("AdminCategoryView");
+            }
         }
         public IActionResult DeleteCategory(int Catid)
         {

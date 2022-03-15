@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\images\CategoryImage\" />
     <Folder Include="wwwroot\images\StartupImage\StartUpIdeaPhoto\" />
   </ItemGroup>
 

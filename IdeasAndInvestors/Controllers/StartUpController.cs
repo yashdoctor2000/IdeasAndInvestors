@@ -22,8 +22,9 @@ namespace IdeasAndInvestors.Controllers
             HttpContext.Session.SetString("Pid", Convert.ToString(Pid));
             TempData["Pid"] = Convert.ToInt32(HttpContext.Session.GetString("Pid"));
             var rdFound = bkDb.PersonMasters.Where(usr => usr.Pid == Pid).FirstOrDefault();
+            Int32 length = startUpDetails.Count;
             TempData["Found"] = null;
-            if (startUpDetails != null) 
+            if (length != 0) 
             {
                 TempData["Found"] = 1;
             }

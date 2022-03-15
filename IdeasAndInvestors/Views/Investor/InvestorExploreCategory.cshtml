@@ -1,0 +1,34 @@
+﻿@model IEnumerable<IdeasAndInvestors.Models.CategoryMaster>
+@{
+    ViewData["Title"] = "InvestorExploreCategory";
+    Layout = "~/Views/Shared/_IdeasInvestorsInvestor.cshtml";
+}
+
+<section class="locations-1" id="locations">
+    <div class="locations py-5">
+        <div class="container py-md-3">
+            <div class="heading text-center mx-auto">
+                <h3 class="head">Popular Ideas</h3>
+                <p class="my-3 head ">
+                    We all have ideas, but translating those ideas into something tangible -a product or a service- is what separates doers from thinkers. Facebook was not the first social network, the iPhone was not the first smartphone, Google was not the first search engine and Stripe was not the first payments processor in the world.
+                    
+                </p>
+            </div>
+            <div class="row mt-3 pt-5">
+            @foreach (var cat in Model)
+            {                   
+                    <div class="col-md-4 col-sm-6 mt-3">
+                        <div class="box16">
+                             <img style="width:420px;height:300px;"  src="@Url.Content("~/" + cat.Catimage)" alt="No image found">
+                            <div class="box-content">
+                                <h3 class="title">@cat.Catname</h3>
+                                <a href="@Url.Action("InvestorCategoryDetails","Investor",new {Catid=cat.Catid})" style="color:white"><span class="post">View Ideas</span></a>
+
+                            </div>
+                        </div>
+                    </div>                      
+            }
+            </div>
+        </div>
+    </div>
+</section>

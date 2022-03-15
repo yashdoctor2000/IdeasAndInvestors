@@ -11,5 +11,8 @@ namespace IdeasAndInvestors.Models
 
         [Column(TypeName = "varchar(50)")]
         public string Catname { get; set; }
+
+        [Column(TypeName = "varchar(200)")]
+        public string Catimage { get; set; }
     }
 }

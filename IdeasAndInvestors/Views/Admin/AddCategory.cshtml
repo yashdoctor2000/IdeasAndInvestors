@@ -3,7 +3,7 @@
     ViewData["Title"] = "AddCategory";
     Layout = "~/Views/Shared/_IdeasInvestorsAdmin.cshtml";
 }
-@using (Html.BeginForm("AddCategory","Admin",FormMethod.Post))
+@using (Html.BeginForm("AddCategory","Admin",FormMethod.Post,new {enctype = "multipart/form-data" }))
 {
 
     <!-- CSS Stylesheet -->
@@ -26,6 +26,11 @@
                         <div class="input-group">
                             <span><i class="fas fa-comment" aria-hidden="true"></i></span>
                             <input type="text" placeholder="Add Category " required="" id="Catname" name="Catname">
+                        </div>
+                        <div>
+                            <span>@*<i class="fas fa-image" aria-hidden="true"></i>*@Category Image</span>
+                            
+                            <input type="file" id="file" name="file" accept="image/*" required="" />
                         </div>
                         
                         <button class="btn btn-primary btn-block" type="submit">Submit Category</button>

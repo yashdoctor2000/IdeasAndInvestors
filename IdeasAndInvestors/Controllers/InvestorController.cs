@@ -67,5 +67,19 @@ namespace IdeasAndInvestors.Controllers
             return View();
             
         }
+
+        public IActionResult InvestorExploreCategory()
+        {
+            var qList = bkDb.CategoryMasters.ToList();
+            return View(qList);
+        }
+
+        public IActionResult InvestorCategoryDetails(int Catid)
+        {
+            var categoryDetails = bkDb.IdeaMasters.Where(usr => usr.Catid == Catid).ToList();
+            var name=bkDb.CategoryMasters.Where(usr=>usr.Catid==Catid).FirstOrDefault();
+            TempData["CategoryName"] = Convert.ToString(name.Catname);
+            return View(categoryDetails);
+        }
     }
 }
