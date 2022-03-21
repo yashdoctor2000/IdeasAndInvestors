@@ -81,5 +81,27 @@ namespace IdeasAndInvestors.Controllers
             TempData["CategoryName"] = Convert.ToString(name.Catname);
             return View(categoryDetails);
         }
+
+        public IActionResult InvestorIdeaView(int Iid)
+        {
+            ViewBag.backers=bkDb.InvestmentMasters.Where(usr=>usr.Iid==Iid).Count();
+            var investment_done=bkDb.InvestmentMasters.Where(usr=>usr.Iid==Iid).ToList();
+            var invested_amount = 0;
+            foreach (var usr in investment_done){
+                invested_amount = Convert.ToInt32(usr.Insamount)+invested_amount;
+            }
+            var ideaDetails=bkDb.IdeaMasters.Where(usr=>usr.Iid==Iid).FirstOrDefault();
+            ViewBag.remaining_amount = Convert.ToInt32(ideaDetails.IinvestmentNeeded) - invested_amount;
+            ViewBag.invested_amount=invested_amount;
+            var personID=Convert.ToInt32(ideaDetails.Pid);
+            var duration = Convert.ToInt32(ideaDetails.IinvestmentDuration);
+            DateTime registered_date = ideaDetails.Idate;
+            DateTime due_date=registered_date.AddMonths(duration);
+            TimeSpan difference = due_date- DateTime.Now;
+            ViewBag.difference=difference.Days;
+            ViewBag.due_date = due_date;
+            ViewBag.personDetails=bkDb.PersonMasters.Where(usr=>usr.Pid==personID).FirstOrDefault();
+            return View(ideaDetails);
+        }
     }
 }

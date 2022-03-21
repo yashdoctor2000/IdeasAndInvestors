@@ -1,0 +1,117 @@
+﻿@model IdeasAndInvestors.Models.IdeaMaster
+@{
+    ViewData["Title"] = "InvestorIdeaView";
+    Layout = "~/Views/Shared/_IdeasInvestorsInvestor.cshtml";
+    var personDetails = ViewBag.personDetails;
+    var invested_amount=ViewBag.invested_amount;
+    var backers=ViewBag.backers;
+    var remaining_amount = ViewBag.remaining_amount;
+    var due_date = ViewBag.due_date;
+    var difference = ViewBag.difference;
+}
+
+ 
+    <section class="w3l-blog post-content py-5">
+        <div class="container py-lg-4 py-md-3 py-2">
+            <div class="inner mb-4">
+                <ul class="blog-single-author-date align-items-center">
+                    <li>
+                        <div class="listing-category"><span>Buy</span><span>Rent</span></div>
+                    </li>
+                    <li><span class="fa fa-clock-o"></span> @Model.IinvestmentDuration Months</li>
+                    <li><span class="fa fa-eye"></span> 250 views</li>
+                </ul>
+            </div>
+            <div class="post-content">
+                <h2 class="title-single"> @Model.Ititle</h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 w3l-news">
+                    <div class="blog-single-post">
+                        
+                            
+                                <div class="item">
+                                    <div class="card">
+                                        <img src="@Url.Content("~/"+@Model.Iimage)"  class="img-fluid radius-image" alt="image">
+                                    </div>
+                                </div>
+                                
+                           
+                        
+                    &nbsp;&nbsp;
+                        <div class="single-post-content">
+                            <h3 class="post-content-title mb-3">Description</h3>
+                            <p class="mb-4">
+                                @Model.Idescription </p>
+                            
+                            <div class="single-bg-white">
+                                <h3 class="post-content-title mb-4">StartUp details</h3>
+                                <ul class="details-list">
+                                    <li><strong>Name :</strong> @Model.Ititle </li>
+                                    <li><strong>Investment Needed :</strong> $ @Model.IinvestmentNeeded </li>
+                                    <li><strong>Enroll. Date :</strong> @Model.Idate.ToShortDateString() </li>
+                                    <li><strong>Investment Duration :</strong> @Model.IinvestmentDuration Months</li>
+                                    <li><strong>Reward (0 - 10%) :</strong> @Model.IRFLT10Pnt </li>
+                                    <li><strong>Reward (10 - 20%) :</strong> @Model.IRFLT20Pnt </li>
+                                    <li><strong>Total Investors : </strong>@backers</li>
+                                    <li><strong>Investment Done: </strong>@invested_amount</li>
+                                    <li><strong>Investment Remaining: </strong>@remaining_amount</li>
+                                    <li><strong>Due Date: </strong>@due_date.ToShortDateString()</li>
+                                    <li><strong>Time left: </strong>@difference Days</li>
+                                </ul>
+                            </div>
+                            <div class="single-bg-white">
+                                <h3 class="post-content-title mb-4">Entrepreneur Information</h3>
+                                <ul class="details-list">
+                                    <li><strong>Name :</strong> @personDetails.Pname</li>
+                                    <li><strong>Qualification :</strong> @personDetails.Pqualification </li>
+                                    <li><strong>Gender :</strong> @personDetails.Pgender </li>
+                                    <li><strong>DOB :</strong> @personDetails.Pdob.ToShortDateString() </li>
+                                    <li><strong>Phone :</strong> @personDetails.Pphone </li>
+                                    <li><strong>Email :</strong> @personDetails.Pemail</li>
+                                </ul>
+                            </div>
+                        </div>
+    
+                        
+    
+                        <div class="single-bg-white mb-0">
+                            <h3 class="post-content-title mb-4">Video</h3>
+                            <div class="post-content">
+                                <iframe src="@Model.Ividurl" frameborder="0"
+                                    allowfullscreen=""></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-side col-lg-4 col-md-12 col-sm-12 mt-lg-0 mt-5">
+                    <aside class="sidebar">
+    
+                        <!-- Popular Post Widget-->
+                        <div class="sidebar-widget popular-posts">
+                            <div class="sidebar-title">
+                                <h4>Contact Entrepreneur</h4>
+                            </div>
+    
+                            <article class="post">
+                                <figure class="post-thumb"><img src="@Url.Content("~/"+@personDetails.Pimage)" class="radius-image" alt="">
+                                </figure>
+                                <div class="text mb-0"><a class="blog-single">@personDetails.Pname
+                                    </a>
+                                    <div class="post-info">@personDetails.Pphone</div>
+                                    <div class="post-info">@personDetails.Pemail</div>
+                                </div>
+                            </article>
+                            <button type="submit" class="btn btn-primary btn-style w-100">Request details</button>
+                        </div>
+    
+    
+                        
+    
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
+

@@ -23,6 +23,7 @@
 
     <link rel="stylesheet" href="~/template/assets/css/style-starter.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/template/assets/css/idea-view.css" />
 
 
      <script>window.FontAwesomeKitConfig = {"asyncLoading":{"enabled":true},"autoA11y":{"enabled":true},"baseUrl":"https://ka-f.fontawesome.com","detectConflictsUntil":null,"iconUploads":{},"license":"free","method":"css","minify":{"enabled":true},"token":"af562a2a63","v4FontFaceShim":{"enabled":true},"v4shim":{"enabled":true},"version":"5.15.1"};
@@ -86,10 +87,10 @@
                                     
                                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                 <li><a class="dropdown-item">@ViewData["ErrMsg"]</a></li>
-                <li><a class="dropdown-item" href="@Url.Action("InvestorFeedback","Investor")">Feedback</a></li>
-                <li><a class="dropdown-item" href="@Url.Action("InvestorComplain","Investor")">Complain</a></li>
-                <li><a class="dropdown-item" href="@Url.Action("Home","Login")">Sign Out</a></li>
+                @*<li><a class="dropdown-item1">@ViewData["ErrMsg"]</a></li>*@
+                <li><a class="dropdown-item1" href="@Url.Action("InvestorFeedback","Investor")">Feedback</a></li><br />
+                <li><a class="dropdown-item1" href="@Url.Action("InvestorComplain","Investor")">Complain</a></li><br />
+                <li><a class="dropdown-item1" href="@Url.Action("Home","Login")">Sign Out</a></li>
                 </ul>
                 </div>
                 

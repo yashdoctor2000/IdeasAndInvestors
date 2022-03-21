@@ -95,10 +95,13 @@ namespace IdeasAndInvestors.Controllers
                 file.CopyTo(new FileStream(finalPath, FileMode.Create));
                 ideaMaster.Iimage = "images\\StartupImage\\StartUpIdeaPhoto\\" + uniqueImageName;
             }
+            string str = ideaMaster.Ividurl;
+            string new_str = str.Replace("watch?v=", "embed/");
             //ideaMaster.Pid = Convert.ToInt32(
               //HttpContext.Session.GetString("Pid"));
             //ideaMaster.Pid = Convert.ToInt32(TempData["Pid"]);
             ideaMaster.Idate=DateTime.Now;
+            ideaMaster.Ividurl = new_str;
             
             bkDb.IdeaMasters.Add(ideaMaster);
             TempData["Pid"] = ideaMaster.Pid;
@@ -140,24 +143,54 @@ namespace IdeasAndInvestors.Controllers
         public IActionResult StartUpEditIdea(IdeaMaster ideaMaster, IFormFile file)
         {
             string uniqueImageName = null;
-            if (file != null)
+            if (ideaMaster.Ividurl.Contains("watch?v="))
             {
-                string uploadimgfoldername = Path.Combine(henv.WebRootPath, "images\\StartupImage\\StartUpIdeaPhoto");
-                uniqueImageName = Guid.NewGuid().ToString() + "_" + file.FileName;
-                string finalPath = Path.Combine(uploadimgfoldername, uniqueImageName);
-                file.CopyTo(new FileStream(finalPath, FileMode.Create));
-                ideaMaster.Iimage = "images\\StartupImage\\StartUpIdeaPhoto\\" + uniqueImageName;
-                bkDb.Entry(ideaMaster).State = EntityState.Modified;
-                TempData["Pid"] = ideaMaster.Pid;
-                bkDb.SaveChanges();
-                return RedirectToAction("StartUpHome", new { Pid = ideaMaster.Pid });
+                string str = ideaMaster.Ividurl;
+                string new_str = str.Replace("watch?v=", "embed/");
+                ideaMaster.Ividurl = new_str;
+
+
+                if (file != null)
+                {
+                    string uploadimgfoldername = Path.Combine(henv.WebRootPath, "images\\StartupImage\\StartUpIdeaPhoto");
+                    uniqueImageName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                    string finalPath = Path.Combine(uploadimgfoldername, uniqueImageName);
+                    file.CopyTo(new FileStream(finalPath, FileMode.Create));
+                    ideaMaster.Iimage = "images\\StartupImage\\StartUpIdeaPhoto\\" + uniqueImageName;
+                    bkDb.Entry(ideaMaster).State = EntityState.Modified;
+                    TempData["Pid"] = ideaMaster.Pid;
+                    bkDb.SaveChanges();
+                    return RedirectToAction("StartUpHome", new { Pid = ideaMaster.Pid });
+                }
+                else
+                {
+                    bkDb.Entry(ideaMaster).State = EntityState.Modified;
+                    TempData["Pid"] = ideaMaster.Pid;
+                    bkDb.SaveChanges();
+                    return RedirectToAction("StartUpHome", new { Pid = ideaMaster.Pid });
+                }
             }
             else
             {
-                bkDb.Entry(ideaMaster).State = EntityState.Modified;
-                TempData["Pid"] = ideaMaster.Pid;
-                bkDb.SaveChanges();
-                return RedirectToAction("StartUpHome", new { Pid = ideaMaster.Pid });
+                if (file != null)
+                {
+                    string uploadimgfoldername = Path.Combine(henv.WebRootPath, "images\\StartupImage\\StartUpIdeaPhoto");
+                    uniqueImageName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                    string finalPath = Path.Combine(uploadimgfoldername, uniqueImageName);
+                    file.CopyTo(new FileStream(finalPath, FileMode.Create));
+                    ideaMaster.Iimage = "images\\StartupImage\\StartUpIdeaPhoto\\" + uniqueImageName;
+                    bkDb.Entry(ideaMaster).State = EntityState.Modified;
+                    TempData["Pid"] = ideaMaster.Pid;
+                    bkDb.SaveChanges();
+                    return RedirectToAction("StartUpHome", new { Pid = ideaMaster.Pid });
+                }
+                else
+                {
+                    bkDb.Entry(ideaMaster).State = EntityState.Modified;
+                    TempData["Pid"] = ideaMaster.Pid;
+                    bkDb.SaveChanges();
+                    return RedirectToAction("StartUpHome", new { Pid = ideaMaster.Pid });
+                }
             }
         }
     }

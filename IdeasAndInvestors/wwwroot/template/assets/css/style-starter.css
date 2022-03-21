@@ -4815,7 +4815,7 @@ input[type="button"].btn-block {
   overflow: hidden;
   border-top: 1px solid #e9ecef; }
 
-.dropdown-item {
+.dropdown-item1 {
   display: block;
   width: 100%;
   padding: 0.25rem 1.5rem;
@@ -4826,15 +4826,15 @@ input[type="button"].btn-block {
   white-space: nowrap;
   background-color: transparent;
   border: 0; }
-  .dropdown-item:hover, .dropdown-item:focus {
+  .dropdown-item1:hover, .dropdown-item1:focus {
     color: #16181b;
     text-decoration: none;
     background-color: #f8f9fa; }
-  .dropdown-item.active, .dropdown-item:active {
+  .dropdown-item1.active, .dropdown-item1:active {
     color: #fff;
     text-decoration: none;
     background-color: #000; }
-  .dropdown-item.disabled, .dropdown-item:disabled {
+  .dropdown-item1.disabled, .dropdown-item1:disabled {
     color: #6c757d;
     pointer-events: none;
     background-color: transparent; }
@@ -4850,7 +4850,7 @@ input[type="button"].btn-block {
   color: #6c757d;
   white-space: nowrap; }
 
-.dropdown-item-text {
+.dropdown-item1-text {
   display: block;
   padding: 0.25rem 1.5rem;
   color: #212529; }
@@ -9932,7 +9932,7 @@ h4.sub-title {
   border-left: 0.2em solid transparent;
   vertical-align: middle; }
 
-.w3l-bootstrap-header .dropdown-item:hover, .w3l-bootstrap-header .dropdown-item:focus {
+.w3l-bootstrap-header .dropdown-item1:hover, .w3l-bootstrap-header .dropdown-item1:focus {
   color: var(--opposite-color);
   text-decoration: none;
   background-color: transparent; }

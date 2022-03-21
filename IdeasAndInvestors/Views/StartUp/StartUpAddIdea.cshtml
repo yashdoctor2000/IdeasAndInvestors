@@ -4,7 +4,21 @@
     ViewData["Title"] = "StartUpAddIdea";
     Layout = "~/Views/Shared/_IdeasInvestorsStartUp.cshtml";
 }
-@using (Html.BeginForm("StartUpAddIdea","StartUp",FormMethod.Post,new {enctype = "multipart/form-data" }))
+<style>    
+    label.error.fail-alert {
+/*border: 2px solid red;*/
+border-radius: 4px;
+line-height: 1;
+/*padding: 10px;*/
+/*background: #ffe6eb;*/
+color:red;
+/*margin-left:150px;
+margin-top:30px;*/
+}
+</style>
+
+
+@using (Html.BeginForm("StartUpAddIdea","StartUp",FormMethod.Post,new {id= "addideaval",enctype = "multipart/form-data" }))
 {
 
     <!-- CSS Stylesheet -->
@@ -51,11 +65,11 @@
                         </div>
                         <div class="input-group">
                             <span><i class="fas fa-clock" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Idea Duration" required="" id="IinvestmentDuration" name="IinvestmentDuration">
+                            <input type="text" placeholder="Idea Duration (Months)" required="" id="IinvestmentDuration" name="IinvestmentDuration">
                         </div>
                         <div class="input-group">
                             <span><i class="fa fa-youtube" aria-hidden="true"></i></span>
-                            <input type="text" placeholder="Idea Video" required="" id="Ividurl" name="Ividurl">
+                            <input type="text" placeholder="Idea Video Link" required="" id="Ividurl" name="Ividurl">
                         </div>
                         <button type="button" id="button">Open Video</button>
                         <div class="input-group">
@@ -109,6 +123,40 @@ $(document).ready(function(){
     });
 });
 </script>
+@section AddIdeaValidation
+{
+     <script type="text/javascript">
+        //following is called jquery validation plugin
+        $(document).ready(function(){
+
+            $("#addideaval").validate({
+                errorClass: "error fail-alert",
+
+                rules: {
+
+                    IinvestmentDuration: {
+                      required: true,
+		              number: true,
+		              
+                      
+                    }
+
+                    
+                    
+                   
+                },
+                
+                errorPlacement:function(error,element){
+                    error.insertAfter(element.parent());
+                }
+            })
+
+        });
+
+
+
+    </script>
+}
 
 
 
