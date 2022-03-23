@@ -25,7 +25,7 @@
             <div class="post-content">
                 <h2 class="title-single"> @Model.Ititle</h2>
             </div>
-            
+            <br />
             <div class="row">
                 <div class="col-lg-8 w3l-news">
                     <div class="blog-single-post">
@@ -103,7 +103,7 @@
                                     <div class="post-info">@personDetails.Pemail</div>
                                 </div>
                             </article>
-                            <button type="submit" class="btn btn-primary btn-style w-100">Request details</button>
+                            <a href="@Url.Action("InvestorInvestmentView","Investor",new {Iid = Model.Iid})"><input type="button" value="Invest Now" class="btn btn-primary btn-style w-100"></a>
                         </div>
     
     

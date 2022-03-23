@@ -15,7 +15,7 @@
             <div class="row mt-5 pt-3">
                 @foreach (var idea in Model)
             {
-                <div class="grids4-info  col-lg-4 col-md-6">
+                <div class="grids4-info  col-lg-4 col-md-6 col-sm-6 mt-3">
                         <a href="@Url.Action("InvestorIdeaView","Investor",new {Iid = @idea.Iid})"><img style="width:420px;height:300px;" src="@Url.Content("~/"+idea.Iimage)" class="img-fluid" alt=""></a>
                         @*<ul class="location-top">
                             <li class="rent">For Rent</li>
@@ -24,18 +24,13 @@
                         <div class="info-bg">
                             <h5><a href="#">@idea.Ititle</a></h5>
                             <p>Investment Needed :  $ @idea.IinvestmentNeeded</p>
-                            @*<ul>
-                                <li><span class="fa fa-bed"></span> 4 Beds</li>
-                                <li><span class="fa fa-bath"></span> 3 Baths</li>
-                                <li><span class="fa fa-share-square-o"></span> 1200 sq ft</li>
-                            </ul>*@
                         </div>
                     </div>
                 
                  
 					
 					} 
-                   
+                  <br /><br /> 
                 </div>
                 
            </div>

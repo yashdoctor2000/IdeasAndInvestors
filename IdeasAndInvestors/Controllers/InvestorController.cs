@@ -103,5 +103,40 @@ namespace IdeasAndInvestors.Controllers
             ViewBag.personDetails=bkDb.PersonMasters.Where(usr=>usr.Pid==personID).FirstOrDefault();
             return View(ideaDetails);
         }
+        [HttpGet]
+        public IActionResult InvestorInvestmentView(int Iid)
+        {
+            var rdFound = bkDb.IdeaMasters.Where(usr => usr.Iid == Iid).FirstOrDefault();
+            var investmentMaster=bkDb.InvestmentMasters.Where(usr=>usr.Iid==Iid).ToList();
+            var invested_amount = 0;
+            foreach (var usr in investmentMaster)
+            {
+                invested_amount = invested_amount + Convert.ToInt32(usr.Insamount);
+            }
+            var remaining_amount = Convert.ToInt32(rdFound.IinvestmentNeeded) - invested_amount;
+            ViewBag.remaining_amount=remaining_amount;
+            ViewBag.invested_amount = invested_amount;
+            ViewBag.Iid=Iid;
+            ViewBag.Ititle = rdFound.Ititle;
+            ViewBag.IRFLT10Pnt = rdFound.IRFLT10Pnt;
+            ViewBag.IRFLT20Pnt= rdFound.IRFLT20Pnt;
+            ViewBag.Idescription = rdFound.Idescription;
+            ViewBag.IinvestmentNeeded = rdFound.IinvestmentNeeded;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult InvestorInvestmentView(IFormCollection frm)
+        {
+            var investmentMaster=new InvestmentMaster();
+            investmentMaster.Pid = Convert.ToInt32(HttpContext.Session.GetString("Pid"));
+            investmentMaster.Insdate=DateTime.Now;
+            investmentMaster.Instime = DateTime.Now;
+            investmentMaster.Instype = "10%";
+            investmentMaster.Insamount = Convert.ToInt32(frm["Insamount"]);
+            investmentMaster.Iid = Convert.ToInt32(frm["Iid"]);
+            bkDb.InvestmentMasters.Add(investmentMaster);
+            bkDb.SaveChanges();
+            return RedirectToAction("InvestorHome");
+        }
     }
 }

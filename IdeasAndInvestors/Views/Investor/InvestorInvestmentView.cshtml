@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewData["Title"] = "InvestorInvestmentView";
+    Layout = "~/Views/Shared/_IdeasInvestorsInvestor.cshtml";
+    var invested_amount = ViewBag.invested_amount;
+    var remaining_amount = ViewBag.remaining_amount;
+    var Iid = ViewBag.Iid;
+    var Ititle = ViewBag.Ititle;
+    var Idescription = ViewBag.Idescription;
+    var IRFLT10Pnt = ViewBag.IRFLT10Pnt;
+    var IRFLT20Pnt = ViewBag.IRFLT20Pnt;
+    var IinvestmentNeeded = ViewBag.IinvestmentNeeded;
+}
+
+    
+<center>
+<h1 class="header-agileits w3 w3l agile-info mt-2" style="color: black;">Payment Form</h1>
+</center><br />
+@using (Html.BeginForm("InvestorInvestmentView","Investor",FormMethod.Post))
+{
+<div class="container py-3 d-flex flex-column align-items-center" style="background-color:#EFEFEF">
+    <div class="w-50 p-2" style="background-color:#EFEFEF">
+
+  <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" value="@Ititle" readonly>
+    </div>
+  </div>
+
+  <input type="hidden" value="@Iid" id="Iid" name="Iid" />
+
+  <div class="row mb-3">
+    <label for="description" class="col-sm-2 col-form-label">Description</label>
+    <div class="col-sm-10">
+      <textarea class="form-control"  id="description" readonly>@Idescription</textarea>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="investment" class="col-sm-2 col-form-label">Investment Needed</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="investment" value="$ @IinvestmentNeeded" readonly>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="invested_amount" class="col-sm-2 col-form-label">Investment Completed</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="invested_amount" value="$ @invested_amount" readonly>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="remaining_amount" class="col-sm-2 col-form-label">Investment Remanining</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="remaining_amount" value="$ @remaining_amount" readonly>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="reward_10" class="col-sm-2 col-form-label">Reward (0-10)% </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="reward_10" value="@IRFLT10Pnt" readonly>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="reward_20" class="col-sm-2 col-form-label">Reward (10-20)%</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="reward_20" value="@IRFLT20Pnt" readonly>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="Insamount" class="col-sm-2 col-form-label">Your Investment</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="Insamount" name="Insamount">
+    </div>
+  </div>
+
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">Do you want Reward?</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="reward" id="reward" value="Yes" checked>
+        <label class="form-check-label" for="reward">
+          Yes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="reward" id="reward" value="No">
+        <label class="form-check-label" for="reward">
+          No
+        </label>
+      </div>
+      @*<div class="form-check disabled">
+        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+        <label class="form-check-label" for="gridRadios3">
+          Third disabled radio
+        </label>
+      </div>*@
+    </div>
+  </fieldset>
+  @*<div class="row mb-3">
+    <div class="col-sm-10 offset-sm-2">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck1">
+        <label class="form-check-label" for="gridCheck1">
+          Example checkbox
+        </label>
+      </div>
+    </div>
+  </div>*@
+  <button type="submit" style="background-color:#4800D6" class="btn btn-primary w-100">Invest</button>
+  </div>
+@*<div class="d-flex flex-column align-items-center justify-content-center">
+  <div class="col-md-6 mb-2">
+    <label for="inputEmail4" class="form-label">Email</label>
+    <input type="email" class="form-control" id="inputEmail4">
+  </div>
+  <div class="col-md-6 mb-2">
+    <label for="inputPassword4" class="form-label">Password</label>
+    <input type="password" class="form-control" id="inputPassword4">
+  </div>
+  <div class="col-md-6 mb-2">
+    <label for="inputAddress" class="form-label">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+  </div>
+  <div class="col-md-6 mb-2">
+    <label for="inputAddress2" class="form-label">Address 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  </div>
+  <div class="col-md-6 mb-2">
+    <label for="inputCity" class="form-label">City</label>
+    <input type="radio" class="form-control" id="inputCity" name="inputCity">Radio  
+  </div>
+  <div class="col-md-6 mb-2">
+    <label for="inputCity" class="form-label">City</label>
+    <input type="text" class="form-control" id="inputCity">
+  </div>
+  <div class="col-md-6 mb-2">
+    <label for="inputState" class="form-label">State</label>
+    <select id="inputState" class="form-select">
+      <option selected>Choose...</option>
+      <option>...</option>
+    </select>
+  </div>
+  <div class="col-md-6 mb-2">
+    <label for="inputZip" class="form-label">Zip</label>
+    <input type="text" class="form-control" id="inputZip">
+  </div>
+  
+  <div class="col-md-6 my-2 w-100">
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </div>
+</div>*@
+</div>
+}
