@@ -10,14 +10,16 @@
     var IRFLT10Pnt = ViewBag.IRFLT10Pnt;
     var IRFLT20Pnt = ViewBag.IRFLT20Pnt;
     var IinvestmentNeeded = ViewBag.IinvestmentNeeded;
+    TempData["IinvestmentNeeded"]=IinvestmentNeeded;
 }
 
     
 <center>
-<h1 class="header-agileits w3 w3l agile-info mt-2" style="color: black;">Payment Form</h1>
+<h1 class="header-agileits w3 w3l agile-info mt-2" style="color: black;">Payment Page</h1>
 </center><br />
 @using (Html.BeginForm("InvestorInvestmentView","Investor",FormMethod.Post))
 {
+    
 <div class="container py-3 d-flex flex-column align-items-center" style="background-color:#EFEFEF">
     <div class="w-50 p-2" style="background-color:#EFEFEF">
 
@@ -112,7 +114,7 @@
       </div>
     </div>
   </div>*@
-  <button type="submit" style="background-color:#4800D6" class="btn btn-primary w-100">Invest</button>
+  <button type="submit" style="background-color:#4800D6" id="invest_button" class="btn btn-primary w-100">Pay Now</button>
   </div>
 @*<div class="d-flex flex-column align-items-center justify-content-center">
   <div class="col-md-6 mb-2">
@@ -157,3 +159,22 @@
 </div>*@
 </div>
 }
+
+<script>
+    $(document).ready(function()
+    {
+        $("#Insamount").on('input',function(){
+            $(".error").remove();
+            number : true;
+            var remaining_amount=@remaining_amount;
+            var amount=$("#Insamount").val();
+            if (amount>remaining_amount){
+                $("#Insamount").after('<span class="error" style="color:red;">Please enter valid amount</span>');
+                $("#invest_button").attr("disabled",true);
+            }
+            else{
+                $("#invest_button").attr("disabled",false);
+            }
+        });
+    });
+</script>

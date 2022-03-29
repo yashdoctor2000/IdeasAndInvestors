@@ -129,14 +129,18 @@ namespace IdeasAndInvestors.Controllers
         {
             var investmentMaster=new InvestmentMaster();
             investmentMaster.Pid = Convert.ToInt32(HttpContext.Session.GetString("Pid"));
+            var Pid=investmentMaster.Pid;
             investmentMaster.Insdate=DateTime.Now;
             investmentMaster.Instime = DateTime.Now;
             investmentMaster.Instype = "10%";
             investmentMaster.Insamount = Convert.ToInt32(frm["Insamount"]);
+            var investment = Convert.ToInt32(TempData["IinvestmentNeeded"]);
+            var percent = (investmentMaster.Insamount * 100) / investment;
+            investmentMaster.Instype = Convert.ToString(percent);
             investmentMaster.Iid = Convert.ToInt32(frm["Iid"]);
             bkDb.InvestmentMasters.Add(investmentMaster);
             bkDb.SaveChanges();
-            return RedirectToAction("InvestorHome");
+            return RedirectToAction("InvestorHome",new {Pid=Pid});
         }
     }
 }
