@@ -103,8 +103,11 @@
                                     <div class="post-info">@personDetails.Pemail</div>
                                 </div>
                             </article>
+                        @if (TempData["Found"] == null)
+                        {
                             <a href="@Url.Action("InvestorInvestmentView","Investor",new {Iid = Model.Iid})"><input type="button" value="Invest Now" class="btn btn-primary btn-style w-100"></a>
-                        </div>
+                        }
+                    </div>
     
     
                         

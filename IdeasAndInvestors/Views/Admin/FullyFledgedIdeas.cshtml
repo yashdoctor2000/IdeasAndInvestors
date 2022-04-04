@@ -1,0 +1,78 @@
+﻿@model IEnumerable<IdeasAndInvestors.Models.IdeaMaster>
+@{
+    ViewData["Title"] = "FullyFledgedIdeas";
+    Layout = "~/Views/Shared/_IdeasInvestorsAdmin.cshtml";
+    var investments = (List<IdeasAndInvestors.Models.InvestmentMaster>)ViewBag.investments;
+}
+
+<center><h1>Fully Fledged Idea's</h1> </center>
+
+    <table id="booking" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Enterprenuer Id</th>
+                <th>Idea Id</th>
+                <th>Idea Image</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                string idesc = "";
+                string iimage = "";
+
+            @foreach (var idea in Model)
+            {
+                var total = 0;
+                                       
+                    @foreach(var invest in investments)
+                    {
+                        @if (invest.Iid == idea.Iid)
+                        {
+                                total = total + invest.Insamount;
+                                //@idea.Ititle
+                                //    idesc = idea.Idescription;
+                                //    iimage = idea.Iimage;
+                         }
+                    }
+                 @if (total == Convert.ToInt32(idea.IinvestmentNeeded))
+                 {
+                    <tr>
+                        <td> 
+                            @idea.Ititle
+                        
+                        </td>
+                        <td>
+                            @idea.Idescription
+                        </td>
+                        <td>
+                            @idea.Pid
+
+                        </td>
+                        <td>
+                            @idea.Iid
+                        </td>    
+                    
+                    
+                        <td>
+                            @if (!string.IsNullOrWhiteSpace(@idea.Iimage))
+                            {
+                                 <img width="100px" height="100px" src="@Url.Content("~/" + @idea.Iimage)" alt="No image found">
+                            }
+                        </td>
+                     </tr>
+                 }
+            }
+           }
+        </tbody>
+    </table>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+    $('#booking').DataTable();
+} );    
+    </script>
+
+

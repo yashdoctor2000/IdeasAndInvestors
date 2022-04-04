@@ -1,0 +1,72 @@
+﻿@model IEnumerable<IdeasAndInvestors.Models.IdeaMaster>
+@{
+    ViewData["Title"] = "StartUpYourInvestors";
+    Layout = "~/Views/Shared/_IdeasInvestorsStartUp.cshtml";
+    var investor = (List<IdeasAndInvestors.Models.InvestmentMaster>)ViewBag.investor;
+}
+@*
+<center><h1>Your Investors</h1> </center>
+
+    <table id="booking" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Investment Amount</th>
+                <th>Investment Date</th>
+                <th>Idea Image</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                string idesc = "";
+                string iimage = "";
+
+            @foreach (var invest in Model)
+            {
+                <tr>
+                    <td>                        
+                    @foreach(var idea in investor)
+                    {
+                        @if (invest.Iid == idea.Iid)
+                        {
+                                    @idea.Ititle
+                                    idesc = idea.Idescription;
+                                    iimage = idea.Iimage;
+                         }
+                    }
+                    </td>
+                    <td>
+                        @idesc
+
+                    </td>
+                    <td>
+                        @invest.Insamount
+
+                    </td>
+                    <td>
+                        @invest.Insdate
+
+                    </td>
+                    
+                    
+                    <td>
+                        @if (!string.IsNullOrWhiteSpace(@iimage))
+                        {
+                            <img width="100px" height="100px" src="@Url.Content("~/" + iimage)" alt="No image found">
+                        }
+                    </td>
+                </tr>
+            }
+           }
+        </tbody>
+    </table>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+    $('#booking').DataTable();
+} );    
+    </script>
+
+*@

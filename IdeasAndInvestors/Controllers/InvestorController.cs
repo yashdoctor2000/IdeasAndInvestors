@@ -70,12 +70,18 @@ namespace IdeasAndInvestors.Controllers
 
         public IActionResult InvestorExploreCategory()
         {
+            var Pid = Convert.ToInt32(
+                HttpContext.Session.GetString("Pid"));
+            TempData["Pid"] = Pid;
             var qList = bkDb.CategoryMasters.ToList();
             return View(qList);
         }
 
         public IActionResult InvestorCategoryDetails(int Catid)
         {
+            var Pid = Convert.ToInt32(
+                HttpContext.Session.GetString("Pid"));
+            TempData["Pid"] = Pid;
             var categoryDetails = bkDb.IdeaMasters.Where(usr => usr.Catid == Catid).ToList();
             var name=bkDb.CategoryMasters.Where(usr=>usr.Catid==Catid).FirstOrDefault();
             TempData["CategoryName"] = Convert.ToString(name.Catname);
@@ -84,11 +90,22 @@ namespace IdeasAndInvestors.Controllers
 
         public IActionResult InvestorIdeaView(int Iid)
         {
+            var Pid = Convert.ToInt32(
+                HttpContext.Session.GetString("Pid"));
+            TempData["Pid"]= Pid;
+            TempData["Found"] = null;
             ViewBag.backers=bkDb.InvestmentMasters.Where(usr=>usr.Iid==Iid).Count();
             var investment_done=bkDb.InvestmentMasters.Where(usr=>usr.Iid==Iid).ToList();
             var invested_amount = 0;
             foreach (var usr in investment_done){
                 invested_amount = Convert.ToInt32(usr.Insamount)+invested_amount;
+            }
+            foreach (var usr in investment_done)
+            {
+                if (usr.Pid == Pid)
+                {
+                    TempData["Found"] = 1;
+                }
             }
             var ideaDetails=bkDb.IdeaMasters.Where(usr=>usr.Iid==Iid).FirstOrDefault();
             ViewBag.remaining_amount = Convert.ToInt32(ideaDetails.IinvestmentNeeded) - invested_amount;
@@ -106,6 +123,10 @@ namespace IdeasAndInvestors.Controllers
         [HttpGet]
         public IActionResult InvestorInvestmentView(int Iid)
         {
+            var Pid = Convert.ToInt32(
+                HttpContext.Session.GetString("Pid"));
+            TempData["Pid"] = Pid;
+
             var rdFound = bkDb.IdeaMasters.Where(usr => usr.Iid == Iid).FirstOrDefault();
             var investmentMaster=bkDb.InvestmentMasters.Where(usr=>usr.Iid==Iid).ToList();
             var invested_amount = 0;
@@ -138,9 +159,27 @@ namespace IdeasAndInvestors.Controllers
             var percent = (investmentMaster.Insamount * 100) / investment;
             investmentMaster.Instype = Convert.ToString(percent);
             investmentMaster.Iid = Convert.ToInt32(frm["Iid"]);
+            var amount = investmentMaster.Insamount;
             bkDb.InvestmentMasters.Add(investmentMaster);
             bkDb.SaveChanges();
-            return RedirectToAction("InvestorHome",new {Pid=Pid});
+            return RedirectToAction("InvestorPaymentInfo", new {Pid=Pid,Payment=amount});
+        }
+        public IActionResult InvestorPaymentInfo(int Pid,int Payment)
+        {
+            var amount=Payment;
+            TempData["Pid"] = Pid;
+            TempData["Insamount"]=amount;
+            return View();
+        }
+        public IActionResult YourInvestments()
+        {
+            var Pid = Convert.ToInt32(
+                HttpContext.Session.GetString("Pid"));
+            TempData["Pid"] = Pid;
+            var InvestList=bkDb.InvestmentMasters.Where(usr=>usr.Pid==Pid).ToList();
+            var IdeaList = bkDb.IdeaMasters.ToList();
+            ViewBag.IdeaList = IdeaList;
+            return View(InvestList);
         }
     }
 }

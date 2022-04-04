@@ -136,5 +136,18 @@ namespace IdeasAndInvestors.Controllers
             }
         }
 
+        public IActionResult InvestmentDetails()
+        {
+            var rdFound = bkDb.InvestmentMasters.ToList();
+            return View(rdFound);
+        }
+        public IActionResult FullyFledgedIdeas()
+        {
+            var investments = bkDb.InvestmentMasters.ToList();
+            var ideas = bkDb.IdeaMasters.ToList();
+            ViewBag.investments=investments;
+            return View(ideas);
+        }
+
     }
 }

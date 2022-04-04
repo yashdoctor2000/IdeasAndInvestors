@@ -193,5 +193,14 @@ namespace IdeasAndInvestors.Controllers
                 }
             }
         }
+
+        public IActionResult StartUpYourInvestors()
+        {
+            var Pid = Convert.ToInt32(HttpContext.Session.GetString("Pid"));
+            var investors=bkDb.InvestmentMasters.ToList();
+            var ideas=bkDb.IdeaMasters.Where(usr=>usr.Pid==Pid).ToList();
+            ViewBag.Investors = investors;
+            return View(ideas);
+        }
     }
 }
