@@ -2,7 +2,15 @@
 @{
     ViewData["Title"] = "StartUpHome";
     Layout = "~/Views/Shared/_IdeasInvestorsStartUp.cshtml";
+    var investmentMaster = (List<IdeasAndInvestors.Models.InvestmentMaster>)ViewBag.investmentMaster;
 }
+
+<link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Hind&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/template/assets/css/style-starter.css">
+	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext" rel="stylesheet">
+
+
 
 <center><h1>Your Idea's</h1> </center>
 <a class="btn btn-info" href="@Url.Action("StartUpAddIdea","StartUp")" >Add Idea</a><br /><br />
@@ -10,10 +18,12 @@
 {
     <table id="booking" class="display" style="width:100%">
         <thead>
+            
             <tr>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Investment Needed</th>
+                <th>Investment Remaining</th>
                 <th>Investment Duration</th>
                 <th>Investment Date</th>
                 <th>Video Link</th>
@@ -24,10 +34,21 @@
 
             </tr>
         </thead>
-        <tbody>
+        <tbody>@{
+            
             @foreach (var user in Model)
             {
-                <tr>
+                    var total = 0;
+                    @foreach(var invest in investmentMaster)
+                    {
+                        @if (invest.Iid == user.Iid)
+                        {
+                            total = total + @invest.Insamount;
+                        }
+                        
+                    }
+                    var remaining_amount = Convert.ToInt32(@user.IinvestmentNeeded) - total;
+                    <tr>
                     <td>
                         @user.Ititle
                     </td>
@@ -36,11 +57,15 @@
 
                     </td>
                     <td>
-                        @user.IinvestmentNeeded
+                        $@user.IinvestmentNeeded
 
                     </td>
                     <td>
-                        @user.IinvestmentDuration
+                        $@remaining_amount
+
+                    </td>
+                    <td>
+                        @user.IinvestmentDuration Months
 
                     </td>
                     <td>
@@ -56,13 +81,14 @@
                         }
                     </td>
                     <td>
-                        <a class="btn btn-info" href="@Url.Action("StartUpEditIdea","StartUp",new {Iid=@user.Iid})" >Edit</a>&nbsp;
+                        <a class="btn btn-info" href="@Url.Action("StartUpEditIdea","StartUp",new {Iid=@user.Iid})" >Edit</a>&nbsp;<br><br>
                         <a class="btn btn-info" href="@Url.Action("DeleteIdea","StartUp", new {Iid=@user.Iid})" >Delete</a>
                     </td>
 
 
 
                 </tr>
+            }
             }
         </tbody>
     </table>

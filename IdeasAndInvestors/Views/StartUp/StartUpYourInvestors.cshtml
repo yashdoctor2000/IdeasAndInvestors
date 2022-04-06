@@ -2,64 +2,82 @@
 @{
     ViewData["Title"] = "StartUpYourInvestors";
     Layout = "~/Views/Shared/_IdeasInvestorsStartUp.cshtml";
-    var investor = (List<IdeasAndInvestors.Models.InvestmentMaster>)ViewBag.investor;
+    var investor = (List<IdeasAndInvestors.Models.InvestmentMaster>)ViewBag.Investors;
+    var personMaster = (List<IdeasAndInvestors.Models.PersonMaster>)ViewBag.personMaster;
 }
-@*
+<link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Hind&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/template/assets/css/style-starter.css">
+	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext" rel="stylesheet">
+
+
 <center><h1>Your Investors</h1> </center>
 
     <table id="booking" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Investment Amount</th>
+                <th>Idea Title</th>
+                <th>Investor Name</th>
+                <th>Invested Amount</th>
                 <th>Investment Date</th>
                 <th>Idea Image</th>
 
             </tr>
         </thead>
         <tbody>
-            @{
-                string idesc = "";
-                string iimage = "";
-
-            @foreach (var invest in Model)
+        @{
+            string name = "";
+            @foreach (var invest in investor)
             {
-                <tr>
-                    <td>                        
-                    @foreach(var idea in investor)
-                    {
-                        @if (invest.Iid == idea.Iid)
+                                 
+                @foreach (var idea in Model)
+                {
+                     @if (invest.Iid == idea.Iid)
                         {
-                                    @idea.Ititle
-                                    idesc = idea.Idescription;
-                                    iimage = idea.Iimage;
-                         }
-                    }
-                    </td>
-                    <td>
-                        @idesc
+                            
+                            @foreach(var person in personMaster)
+                                {
+                                    @if (invest.Pid == person.Pid)
+                                    {
+                                name = person.Pname;
+                            }
 
-                    </td>
-                    <td>
-                        @invest.Insamount
 
-                    </td>
-                    <td>
-                        @invest.Insdate
+                            }
+                             
+                            <tr>
+                            <td>    
+                            
+                                @idea.Ititle
+                            </td >
+                            <td>
+                                @name
 
-                    </td>
-                    
-                    
-                    <td>
-                        @if (!string.IsNullOrWhiteSpace(@iimage))
-                        {
-                            <img width="100px" height="100px" src="@Url.Content("~/" + iimage)" alt="No image found">
+                            </td>
+                            <td>
+                                $@invest.Insamount
+
+                            </td>
+                            <td>
+                                @invest.Insdate
+
+                            </td>
+
+
+                            <td>
+                                @if (!string.IsNullOrWhiteSpace(@idea.Iimage))
+                                {
+                                     <img width="100px" height="100px" src="@Url.Content("~/" + idea.Iimage)" alt="No image found">
+                                }
+                            </td>
+                            </tr>
+
                         }
-                    </td>
-                </tr>
+               }
             }
+
            }
+
         </tbody>
     </table>
     
@@ -68,5 +86,3 @@
     $('#booking').DataTable();
 } );    
     </script>
-
-*@
