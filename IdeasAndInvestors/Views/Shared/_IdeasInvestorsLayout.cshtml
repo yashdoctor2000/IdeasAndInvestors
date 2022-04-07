@@ -107,8 +107,13 @@
     {
         @RenderSection("InvestorValidation",false)
     }
+
+<div class="bottom-copies text-center" style="background-color:#F1F1F1">
+              <p class="copy-footer-29">© 2022 Ideas & Investors. All rights reserved</p>
+               
+          </div>
     <!-- grids block 5 -->
- <section class="w3l-footer-29-main" id="footer">
+ @*<section class="w3l-footer-29-main" id="footer">
   <div class="footer-29">
     <div class="grids-forms-1 pb-5">
 <div class="container">
@@ -132,7 +137,7 @@
               <div class="footer-list-29 footer-1">
                   <h6 class="footer-title-29">About Us</h6>
                   <ul>
-                     <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae</p>
+                     <p>We are Ideas & Investors, we help entrepreneurs to find perfect investors for their startups</p>
                   </ul>
                   <div class="main-social-footer-29">
                     <h6 class="footer-title-29">Social Links</h6>
@@ -156,9 +161,9 @@
               <div class="footer-list-29 footer-3">
                   <div class="properties">
                       <h6 class="footer-title-29">Featured Properties</h6>
-                      <a href="#"><img src="assets/images/g7.jpg" class="img-responsive" alt=""><p>We Are Leading International Consultiing Agency</p></a>
-                      <a href="#"><img src="assets/images/g8.jpg" class="img-responsive" alt=""><p>Digital Marketing Agency all the foundational tools</p></a>
-                      <a href="#"><img src="assets/images/g9.jpg" class="img-responsive" alt=""><p>Doloremque velit sapien labore eius itna</p></a>
+                      <a href="#"><img src="~/template/assets/images/g7.jpg" class="img-responsive" alt=""><p>We Are Leading International Consultiing Agency</p></a>
+                      <a href="#"><img src="~/template/assets/images/g8.jpg" class="img-responsive" alt=""><p>Digital Marketing Agency all the foundational tools</p></a>
+                      <a href="#"><img src="~/template/assets/images/g9.jpg" class="img-responsive" alt=""><p>Doloremque velit sapien labore eius itna</p></a>
                   </div>
               </div>
               <div class="footer-list-29 footer-4">
@@ -166,8 +171,8 @@
                       <h6 class="footer-title-29">Quick Links</h6>
                       <li><a href="@Url.Action("Home","Login")">Home</a></li>
                       <li><a href="@Url.Action("AboutUs","Login")">About</a></li>
-                      <li><a href="@Url.Action("Home","Login")">Services</a></li>
-                      <li><a href="#"> Blog</a></li>
+                      <li><a href="@Url.Action("Login","Login")">Login</a></li>
+              
                       <li><a href="@Url.Action("ContactUs","Login")">Contact</a></li>
                   </ul>
               </div>
