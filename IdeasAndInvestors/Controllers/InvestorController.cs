@@ -181,5 +181,19 @@ namespace IdeasAndInvestors.Controllers
             ViewBag.IdeaList = IdeaList;
             return View(InvestList);
         }
+        public IActionResult InvestorAboutUs()
+        {
+            var Pid = Convert.ToInt32(
+                HttpContext.Session.GetString("Pid"));
+            TempData["Pid"] = Pid;
+            return View();
+        }
+        public IActionResult InvestorContactUs()
+        {
+            var Pid = Convert.ToInt32(
+                HttpContext.Session.GetString("Pid"));
+            TempData["Pid"] = Pid;
+            return View();
+        }
     }
 }
