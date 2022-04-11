@@ -8,7 +8,8 @@
 <link href="//fonts.googleapis.com/css?family=Hind&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="~/template/assets/css/style-starter.css">
 	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext" rel="stylesheet">
-
+@using (Html.BeginForm("ContactUs","Login",FormMethod.Post))
+{
 
 <section class="w3l-contact-breadcrum">
   <div class="breadcrum-bg py-sm-5 py-4">
@@ -29,17 +30,17 @@
 				<div class="d-grid align-form-map">
 					<div class="form-inner-cont">
 						
-						<form action="https://sendmail.w3layouts.com/submitForm" method="post" class="main-input">
+						
 							<div class="top-inputs d-grid">
-								<input type="text" placeholder="Name" name="w3lName" id="w3lName" required="">
-								<input type="email" name="email" placeholder="Email" id="w3lSender" required="">
+								<input type="text" placeholder="Name" name="Name" id="Name" required="">
+								<input type="email" name="Email" placeholder="Email" id="Email" required="">
 							</div>
-							<input type="text" placeholder="Phone Number" name="w3lName" id="w3lName" required="">
-							<textarea placeholder="Message" name="w3lMessage" id="w3lMessage" required=""></textarea>
+							<input type="text" placeholder="Phone Number" name="Phone" id="Phone" required="">
+							<textarea placeholder="Message" name="Message" id="Message" required=""></textarea>
 							<div class="text-right">
 								<button type="submit" class="btn btn-theme3">Send Now</button>
 							</div>
-						</form>
+						
 					</div>
 					
 					<div class="contact-right">
@@ -77,4 +78,6 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3691.2917061647076!2d73.149204!3d22.304805!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x570c96610d44e84a!2sEQUANIMOUS%20TECHNOLOGIES!5e0!3m2!1sen!2sus!4v1649312461390!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 </section>
+
+}
 <!-- //contact form -->

@@ -152,8 +152,16 @@ namespace IdeasAndInvestors.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult ContactUs()
         {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ContactUs(DonorMaster donorMaster)
+        {
+            bkDb.DonorMasters.Add(donorMaster);
+            bkDb.SaveChanges();
             return View();
         }
         

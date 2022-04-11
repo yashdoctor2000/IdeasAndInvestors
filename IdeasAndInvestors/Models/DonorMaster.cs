@@ -9,15 +9,16 @@ namespace IdeasAndInvestors.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Did { get; set; }
 
-        public int Iid { get; set; }
+        [Column(TypeName= "varchar(50)")]
+        public string Name { get; set; }
 
         [Column(TypeName = "varchar(50)")]
-        public DateTime Ddate { get; set; }
+        public string Email { get; set; }
 
         [Column(TypeName = "varchar(20)")]
-        public string Damount { get; set; }
+        public string Phone { get; set; }
 
         [Column(TypeName = "varchar(200)")]
-        public string Dcomment { get; set; }
+        public string Message { get; set; }
     }
 }

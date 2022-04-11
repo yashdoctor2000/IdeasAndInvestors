@@ -149,5 +149,11 @@ namespace IdeasAndInvestors.Controllers
             return View(ideas);
         }
 
+        public IActionResult ContactInformation()
+        {
+            var contactInformation = bkDb.DonorMasters.ToList();
+            return View(contactInformation);
+        }
+
     }
 }

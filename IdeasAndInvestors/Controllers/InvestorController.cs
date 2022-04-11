@@ -31,6 +31,7 @@ namespace IdeasAndInvestors.Controllers
         {
             var Pid= Convert.ToInt32(
                 HttpContext.Session.GetString("Pid"));
+            TempData["Pid"] = Pid;
             return View();
         }
         [HttpPost]
@@ -49,6 +50,9 @@ namespace IdeasAndInvestors.Controllers
         [HttpGet]
         public IActionResult InvestorFeedback()
         {
+            var Pid = Convert.ToInt32(
+                HttpContext.Session.GetString("Pid"));
+            TempData["Pid"] = Pid;
             return View();
         }
         [HttpPost]

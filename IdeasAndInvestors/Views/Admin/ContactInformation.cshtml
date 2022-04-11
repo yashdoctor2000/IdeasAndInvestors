@@ -1,0 +1,54 @@
+﻿@model IEnumerable<IdeasAndInvestors.Models.DonorMaster>
+@{
+    ViewData["Title"] = "ContactInformation";
+    Layout = "~/Views/Shared/_IdeasInvestorsAdmin.cshtml";
+}
+
+<center><h1>Contact Information</h1> </center>
+
+<table id="booking" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>
+                        @user.Did
+                    </td>
+                    <td>
+                        @user.Name
+
+                    </td>
+                    <td>
+                        @user.Email
+
+                    </td>
+                    <td>
+                        @user.Message
+
+                    </td>
+                    
+                    
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+    $('#booking').DataTable();
+} );    
+    </script>
