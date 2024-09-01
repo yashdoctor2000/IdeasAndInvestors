@@ -138,7 +138,7 @@ namespace IdeasAndInvestors.Controllers
 
         public IActionResult InvestmentDetails()
         {
-            var rdFound = bkDb.InvestmentMasters.ToList();
+            var rdFound = bkDb.InvestmentViewModel.FromSqlRaw("EXEC GetInvestmentDetails").ToList();
             return View(rdFound);
         }
         public IActionResult FullyFledgedIdeas()
