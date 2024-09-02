@@ -18,6 +18,6 @@ namespace IdeasAndInvestors.Models
         public DbSet<ComplainMaster> ComplainMasters { get; set; }
         public DbSet<FeedbackMaster> FeedbackMasters { get; set; }
         public DbSet<QuestionMaster> QuestionMasters { get; set; }
-        public DbSet<InvestmentViewModel> InvestmentViewModel { get; set; }
+
     }
 }

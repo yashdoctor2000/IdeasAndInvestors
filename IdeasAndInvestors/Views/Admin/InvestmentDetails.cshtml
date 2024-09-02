@@ -1,53 +1,35 @@
-﻿@model IEnumerable<IdeasAndInvestors.Models.InvestmentMaster>
+﻿@model IEnumerable<IdeasAndInvestors.Models.InvestmentViewModel>
 @{
     ViewData["Title"] = "InvestmentDetails";
     Layout = "~/Views/Shared/_IdeasInvestorsAdmin.cshtml";
 }
 
-
 <table id="booking" class="display" style="width:100%">
-        <thead>
+    <thead>
+        <tr>
+            <th>Investment Id</th>
+            <th>Person Id</th>
+            <th>Name</th>
+            <th>Investment Amount</th>
+            <th>Investment Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>Investment Id</th>
-                <th>Person Id</th>
-                <th>Investmented Amount</th>
-                <th>Investment Date</th>
-                
-
-
-
+                <td>@item.Insid</td>
+                <td>@item.Pid</td>
+                <td>@item.Pname</td>
+                <td>@item.Insamount</td>
+                <td>@item.Insdate.ToShortDateString()</td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in Model)
-            {
-                <tr>
-                    <td>
-                        @user.Iid
-                    </td>
-                    <td>
-                        @user.Pid
+        }
+    </tbody>
+</table>
 
-                    </td>
-                    <td>
-                        @user.Insamount
-
-                    </td>
-                    <td>
-                        @user.Insdate.ToShortDateString()
-
-                    </td>
-                    
-                    
-
-
-                </tr>
-            }
-        </tbody>
-    </table>
-    
-    <script type="text/javascript">
-        $(document).ready(function() {
-    $('#booking').DataTable();
-} );    
-    </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#booking').DataTable();
+    });
+</script>
