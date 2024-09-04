@@ -51,6 +51,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: .net-app
+          path: ${{ github.workspace }}/myapp  # Specify where to download and extract the artifact
       
       - name: Login to Azure
         uses: azure/login@v2
