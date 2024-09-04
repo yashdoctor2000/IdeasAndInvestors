@@ -24,7 +24,7 @@ jobs:
           dotnet-version: '6.0'
 
       - name: Restore
-        run: dotnet restore ${{ env.WORKING_DIRECTORY }}/IdeasAndInvestors.sln
+        run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
 
       - name: Build with dotnet
         run: dotnet build ${{ env.WORKING_DIRECTORY }} --configuration ${{ env.CONFIGURATION }} --no-restore
