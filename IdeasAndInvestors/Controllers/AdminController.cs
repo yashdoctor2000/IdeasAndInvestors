@@ -1,5 +1,7 @@
 ﻿using IdeasAndInvestors.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using System.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdeasAndInvestors.Controllers
@@ -7,11 +9,13 @@ namespace IdeasAndInvestors.Controllers
     public class AdminController : Controller
     {
         #region Default
+        private readonly IConfiguration _configuration;
         private readonly Models.IdeasAndInvestorsDbContext bkDb;
         private readonly IWebHostEnvironment henv;
 
-        public AdminController(Models.IdeasAndInvestorsDbContext bkDB, IWebHostEnvironment henv)
+        public AdminController(IConfiguration configuration,Models.IdeasAndInvestorsDbContext bkDB, IWebHostEnvironment henv)
         {
+            _configuration = configuration;
             bkDb = bkDB;
             this.henv = henv;
         }
@@ -138,8 +142,35 @@ namespace IdeasAndInvestors.Controllers
 
         public IActionResult InvestmentDetails()
         {
-            var rdFound = bkDb.InvestmentMasters.ToList();
-            return View(rdFound);
+            List<InvestmentViewModel> investments = new List<InvestmentViewModel>();
+
+            string connectionString = _configuration.GetConnectionString("IdeasAndInvestorsDBConnection");
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetInvestmentDetails", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            InvestmentViewModel investment = new InvestmentViewModel
+                            {
+                                // Assuming these are the names of the columns returned by the stored procedure
+                                Insid = (int)reader["Insid"],
+                                Pid = (int)reader["Pid"],
+                                Pname = reader["Pname"].ToString(),
+                                Insamount = (int)reader["Insamount"],
+                                Insdate = (DateTime)reader["Insdate"]
+                            };
+                            investments.Add(investment);
+                        }
+                    }
+                }
+            }
+
+            return View(investments);
         }
         public IActionResult FullyFledgedIdeas()
         {
