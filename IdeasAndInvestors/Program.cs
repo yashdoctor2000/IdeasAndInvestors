@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<IdeasAndInvestorsDbContext>(options
     => options.UseSqlServer(
-        builder.Configuration.GetConnectionString("IdeasAndInvestorsDBConnection")));
+        builder.Configuration.GetConnectionString("IdeasAndInvestorsDevelopmentConnection")));
 
 builder.Services.AddSession(
 
