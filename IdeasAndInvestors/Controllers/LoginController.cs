@@ -35,9 +35,11 @@ namespace IdeasAndInvestors.Controllers
             var rdFound = bkDb.PersonMasters.Where(usr => usr.Pemail == email && usr.Ppassword == password).FirstOrDefault();
             if (rdFound != null)
             {
+                HttpContext.Session.SetString("Pid", rdFound.Pid.ToString());
+                HttpContext.Session.SetString("UserRole", rdFound.Prollid.ToString());
                 if (rdFound.Prollid == 2)
                 {
-                    return RedirectToAction("StartUpHome", "StartUp", new { rdFound.Pid });
+                    return RedirectToAction("StartUpHosme", "StartUp", new { rdFound.Pid });
                 }
                 else if (rdFound.Prollid == 3)
                 {

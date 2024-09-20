@@ -17,13 +17,19 @@ namespace IdeasAndInvestors.Controllers
         #endregion Default
         public IActionResult InvestorHome(int Pid)
         {
-            HttpContext.Session.SetString("Pid", Convert.ToString(Pid));
-            var rdFound = bkDb.PersonMasters.Where(usr => usr.Pid == Pid).FirstOrDefault();
-            if (rdFound != null)
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
             {
-                ViewData["ErrMsg"] = "Welcome " + rdFound.Pname;
+                return RedirectToAction("Login", "Login");
             }
-            TempData["Pid"] = HttpContext.Session.GetString("Pid");
+            else
+            {
+                var rdFound = bkDb.PersonMasters.Where(usr => usr.Pid == Pid).FirstOrDefault();
+                if (rdFound != null)
+                {
+                    ViewData["ErrMsg"] = "Welcome " + rdFound.Pname;
+                }
+                TempData["Pid"] = HttpContext.Session.GetString("Pid");
+            }
             return View();
         }
         [HttpGet]
