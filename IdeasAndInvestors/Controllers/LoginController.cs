@@ -35,6 +35,8 @@ namespace IdeasAndInvestors.Controllers
             var rdFound = bkDb.PersonMasters.Where(usr => usr.Pemail == email && usr.Ppassword == password).FirstOrDefault();
             if (rdFound != null)
             {
+                HttpContext.Session.SetString("Pid", rdFound.Pid.ToString());
+                HttpContext.Session.SetString("UserRole", rdFound.Prollid.ToString());
                 if (rdFound.Prollid == 2)
                 {
                     return RedirectToAction("StartUpHome", "StartUp", new { rdFound.Pid });
@@ -164,6 +166,19 @@ namespace IdeasAndInvestors.Controllers
             bkDb.SaveChanges();
             return View();
         }
-        
+        public IActionResult SignOut()
+        {
+            // Clear the session
+            HttpContext.Session.Clear();
+
+            //Response.Headers.Add("Cache-Control", "no-cache, no-store, must-revalidate");
+            //Response.Headers.Add("Pragma", "no-cache");
+            //Response.Headers.Add("Expires", "0");
+
+            // Redirect to the login page
+            return RedirectToAction("Login");
+        }
+
+
     }
 }
