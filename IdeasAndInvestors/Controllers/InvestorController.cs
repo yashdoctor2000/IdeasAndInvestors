@@ -17,18 +17,28 @@ namespace IdeasAndInvestors.Controllers
         #endregion Default
         public IActionResult InvestorHome(int Pid)
         {
-            HttpContext.Session.SetString("Pid", Convert.ToString(Pid));
-            var rdFound = bkDb.PersonMasters.Where(usr => usr.Pid == Pid).FirstOrDefault();
-            if (rdFound != null)
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
             {
-                ViewData["ErrMsg"] = "Welcome " + rdFound.Pname;
+                return RedirectToAction("Login", "Login");
             }
-            TempData["Pid"] = HttpContext.Session.GetString("Pid");
+            else
+            {
+                var rdFound = bkDb.PersonMasters.Where(usr => usr.Pid == Pid).FirstOrDefault();
+                if (rdFound != null)
+                {
+                    ViewData["ErrMsg"] = "Welcome " + rdFound.Pname;
+                }
+                TempData["Pid"] = HttpContext.Session.GetString("Pid");
+            }
             return View();
         }
         [HttpGet]
         public IActionResult InvestorComplain()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var Pid= Convert.ToInt32(
                 HttpContext.Session.GetString("Pid"));
             TempData["Pid"] = Pid;
@@ -37,6 +47,10 @@ namespace IdeasAndInvestors.Controllers
         [HttpPost]
         public IActionResult InvestorComplain(IFormCollection frm)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             ComplainMaster complainMaster = new ComplainMaster();
             complainMaster.Cdetails = Convert.ToString(frm["Cdetails"]);
             complainMaster.Pid = Convert.ToInt32(
@@ -50,6 +64,10 @@ namespace IdeasAndInvestors.Controllers
         [HttpGet]
         public IActionResult InvestorFeedback()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var Pid = Convert.ToInt32(
                 HttpContext.Session.GetString("Pid"));
             TempData["Pid"] = Pid;
@@ -74,6 +92,10 @@ namespace IdeasAndInvestors.Controllers
 
         public IActionResult InvestorExploreCategory()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var Pid = Convert.ToInt32(
                 HttpContext.Session.GetString("Pid"));
             TempData["Pid"] = Pid;
@@ -83,6 +105,10 @@ namespace IdeasAndInvestors.Controllers
 
         public IActionResult InvestorCategoryDetails(int Catid)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var Pid = Convert.ToInt32(
                 HttpContext.Session.GetString("Pid"));
             TempData["Pid"] = Pid;
@@ -94,6 +120,10 @@ namespace IdeasAndInvestors.Controllers
 
         public IActionResult InvestorIdeaView(int Iid)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var Pid = Convert.ToInt32(
                 HttpContext.Session.GetString("Pid"));
             TempData["Pid"]= Pid;
@@ -127,6 +157,10 @@ namespace IdeasAndInvestors.Controllers
         [HttpGet]
         public IActionResult InvestorInvestmentView(int Iid)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var Pid = Convert.ToInt32(
                 HttpContext.Session.GetString("Pid"));
             TempData["Pid"] = Pid;
@@ -170,6 +204,10 @@ namespace IdeasAndInvestors.Controllers
         }
         public IActionResult InvestorPaymentInfo(int Pid,int Payment)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var amount=Payment;
             TempData["Pid"] = Pid;
             TempData["Insamount"]=amount;
@@ -177,6 +215,10 @@ namespace IdeasAndInvestors.Controllers
         }
         public IActionResult YourInvestments()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var Pid = Convert.ToInt32(
                 HttpContext.Session.GetString("Pid"));
             TempData["Pid"] = Pid;
@@ -187,6 +229,10 @@ namespace IdeasAndInvestors.Controllers
         }
         public IActionResult InvestorAboutUs()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var Pid = Convert.ToInt32(
                 HttpContext.Session.GetString("Pid"));
             TempData["Pid"] = Pid;
@@ -194,6 +240,10 @@ namespace IdeasAndInvestors.Controllers
         }
         public IActionResult InvestorContactUs()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var Pid = Convert.ToInt32(
                 HttpContext.Session.GetString("Pid"));
             TempData["Pid"] = Pid;

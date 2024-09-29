@@ -16,8 +16,15 @@ namespace IdeasAndInvestors.Controllers
             this.henv = henv;
         }
         #endregion Default
+
+        [HttpGet]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public IActionResult StartUpHome(int Pid)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var startUpDetails = bkDb.IdeaMasters.Where(usr => usr.Pid == Pid).ToList();
             HttpContext.Session.SetString("Pid", Convert.ToString(Pid));
             TempData["Pid"] = Convert.ToInt32(HttpContext.Session.GetString("Pid"));
@@ -37,8 +44,13 @@ namespace IdeasAndInvestors.Controllers
             return View(startUpDetails);
         }
         [HttpGet]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public IActionResult StartUpComplain()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             TempData["Pid"] = Convert.ToInt32(HttpContext.Session.GetString("Pid"));
             return View();
         }
@@ -57,8 +69,13 @@ namespace IdeasAndInvestors.Controllers
             return View();
         }
         [HttpGet]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public IActionResult StartUpFeedback()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             TempData["Pid"] = Convert.ToInt32(HttpContext.Session.GetString("Pid"));
             return View();
         } 
@@ -79,8 +96,13 @@ namespace IdeasAndInvestors.Controllers
             return View();
         }
         [HttpGet]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public IActionResult StartUpAddIdea()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             TempData["Pid"] = Convert.ToInt32(HttpContext.Session.GetString("Pid"));
             var qList = bkDb.CategoryMasters.ToList();
             return View(qList);
@@ -110,8 +132,14 @@ namespace IdeasAndInvestors.Controllers
             bkDb.SaveChanges();
             return RedirectToAction("StartUpHome", new {Pid=ideaMaster.Pid});
         }
+        [HttpGet]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public IActionResult DeleteIdea(int Iid)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var ideaMaster =new  IdeaMaster();
             var rdFound=bkDb.IdeaMasters.Where(usr=>usr.Iid == Iid).FirstOrDefault();
             if (rdFound != null)
@@ -126,8 +154,13 @@ namespace IdeasAndInvestors.Controllers
             }
         }
         [HttpGet]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public IActionResult StartUpEditIdea(int Iid)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var ideaMaster = new IdeaMaster();
             var rdFound=bkDb.IdeaMasters.Where(usr=> usr.Iid==Iid).FirstOrDefault();
             var qList = bkDb.CategoryMasters.ToList();
@@ -195,9 +228,14 @@ namespace IdeasAndInvestors.Controllers
                 }
             }
         }
-
+        [HttpGet]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public IActionResult StartUpYourInvestors()
-        {            
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var Pid = Convert.ToInt32(HttpContext.Session.GetString("Pid"));
             TempData["Pid"] = Pid;
             var investors=bkDb.InvestmentMasters.ToList();
@@ -207,15 +245,27 @@ namespace IdeasAndInvestors.Controllers
             ViewBag.Investors = investors;
             return View(ideas);
         }
+        [HttpGet]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public IActionResult StartUpAboutUs()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var Pid = Convert.ToInt32(
                 HttpContext.Session.GetString("Pid"));
             TempData["Pid"] = Pid;
             return View();
         }
+        [HttpGet]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public IActionResult StartUpContactUs()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var Pid = Convert.ToInt32(
                 HttpContext.Session.GetString("Pid"));
             TempData["Pid"] = Pid;
