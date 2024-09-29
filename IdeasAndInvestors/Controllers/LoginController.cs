@@ -39,7 +39,7 @@ namespace IdeasAndInvestors.Controllers
                 HttpContext.Session.SetString("UserRole", rdFound.Prollid.ToString());
                 if (rdFound.Prollid == 2)
                 {
-                    return RedirectToAction("StartUpHosme", "StartUp", new { rdFound.Pid });
+                    return RedirectToAction("StartUpHome", "StartUp", new { rdFound.Pid });
                 }
                 else if (rdFound.Prollid == 3)
                 {
@@ -166,6 +166,19 @@ namespace IdeasAndInvestors.Controllers
             bkDb.SaveChanges();
             return View();
         }
-        
+        public IActionResult SignOut()
+        {
+            // Clear the session
+            HttpContext.Session.Clear();
+
+            //Response.Headers.Add("Cache-Control", "no-cache, no-store, must-revalidate");
+            //Response.Headers.Add("Pragma", "no-cache");
+            //Response.Headers.Add("Expires", "0");
+
+            // Redirect to the login page
+            return RedirectToAction("Login");
+        }
+
+
     }
 }
