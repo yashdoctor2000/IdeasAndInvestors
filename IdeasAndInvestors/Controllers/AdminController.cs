@@ -26,7 +26,36 @@ namespace IdeasAndInvestors.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-            return View();
+
+            List<PersonViewModel> persons = new List<PersonViewModel>();
+
+            string connectionString = _configuration.GetConnectionString("IdeasAndInvestorsDBConnection");
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetPersonDetails", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            PersonViewModel person = new PersonViewModel
+                            {
+                                // Assuming these are the names of the columns returned by the stored procedure
+                                Name = reader["Name"].ToString(),
+                                Address = reader["Address"].ToString(),
+                                Email = reader["Email"].ToString(),
+                                Gender = reader["Gender"].ToString(),
+                                Entity = reader["Entity"].ToString(),
+                                Phone = reader["Phone"].ToString()
+                            };
+                            persons.Add(person);
+                        }
+                    }
+                }
+            }
+            return View(persons);
         }
         public IActionResult AdminViewInvestorDetails()
         {
