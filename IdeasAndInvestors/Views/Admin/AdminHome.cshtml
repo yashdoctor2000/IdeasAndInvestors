@@ -13,6 +13,7 @@
             <th>Gender</th>
             <th>Entity</th>
             <th>Phone</th>
+            <th>Flag</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +26,14 @@
                 <td>@item.Gender</td>
                 <td>@item.Entity</td>
                 <td>@item.Phone</td>
+                <td>@if(@item.ISACTIVE == 1){
+                    <a class="btn btn-info" href="@Url.Action("FlagUser","Admin",new {ID=@item.ID})" >Flag</a>
+                }
+                else{
+                    <a class="btn btn-info" href="@Url.Action("FlagUser","Admin",new {ID=@item.ID})" >Un-Flag</a>
+                }
+                &nbsp;
+                </td>
             </tr>
         }
     </tbody>

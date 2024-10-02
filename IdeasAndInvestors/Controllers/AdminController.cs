@@ -42,13 +42,14 @@ namespace IdeasAndInvestors.Controllers
                         {
                             PersonViewModel person = new PersonViewModel
                             {
-                                // Assuming these are the names of the columns returned by the stored procedure
+                                ID = (int)reader["ID"],
                                 Name = reader["Name"].ToString(),
                                 Address = reader["Address"].ToString(),
                                 Email = reader["Email"].ToString(),
                                 Gender = reader["Gender"].ToString(),
                                 Entity = reader["Entity"].ToString(),
-                                Phone = reader["Phone"].ToString()
+                                Phone = reader["Phone"].ToString(),
+                                ISACTIVE = (int)reader["ISACTIVE"]
                             };
                             persons.Add(person);
                         }
@@ -290,6 +291,32 @@ namespace IdeasAndInvestors.Controllers
             }
             var contactInformation = bkDb.DonorMasters.ToList();
             return View(contactInformation);
+        }
+        public IActionResult FlagUser(int ID)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Pid")))
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            var person = bkDb.PersonMasters.FirstOrDefault(p => p.Pid == ID);
+            if(person != null)
+            {
+                if (person.ISACTIVE == 1)
+                {
+                    person.ISACTIVE = 0; // Assuming `IsActive` is a column in the `PersonMasters` table
+
+                    // Mark the entity as modified and save the changes to the database
+                    bkDb.Entry(person).State = EntityState.Modified;
+                    bkDb.SaveChanges();
+                }
+                else
+                {
+                    person.ISACTIVE = 1;
+                    bkDb.Entry(person).State = EntityState.Modified;
+                    bkDb.SaveChanges();
+                }
+            }
+            return RedirectToAction("AdminHome");
         }
 
     }
