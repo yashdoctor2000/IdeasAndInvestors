@@ -1,5 +1,6 @@
 ﻿using IdeasAndInvestors.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace IdeasAndInvestors.Controllers
 {
@@ -198,6 +199,16 @@ namespace IdeasAndInvestors.Controllers
             investmentMaster.Instype = Convert.ToString(percent);
             investmentMaster.Iid = Convert.ToInt32(frm["Iid"]);
             var amount = investmentMaster.Insamount;
+            var idea = bkDb.IdeaMasters.Where(usr => usr.Iid == investmentMaster.Iid).FirstOrDefault();
+            if (idea != null)
+            {
+                var investmentcompleted = idea.Iinvestmentdone;
+                var investmentneeded = idea.IinvestmentNeeded;
+                var newinvestmentamount = investmentcompleted + Convert.ToInt32(frm["Insamount"]);
+                idea.Iinvestmentdone = newinvestmentamount;
+                bkDb.Entry(idea).State = EntityState.Modified;
+                bkDb.SaveChanges();
+            }
             bkDb.InvestmentMasters.Add(investmentMaster);
             bkDb.SaveChanges();
             return RedirectToAction("InvestorPaymentInfo", new {Pid=Pid,Payment=amount});

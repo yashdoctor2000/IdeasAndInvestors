@@ -21,21 +21,22 @@
             <div class="row mt-5 pt-3">
                 @foreach (var idea in Model)
             {
-                <div class="grids4-info  col-lg-4 col-md-6 col-sm-6 mt-3">
-                        <a href="@Url.Action("InvestorIdeaView","Investor",new {Iid = @idea.Iid})"><img style="width:420px;height:300px;" src="@Url.Content("~/"+idea.Iimage)" class="img-fluid" alt=""></a>
-                        @*<ul class="location-top">
+                    @if (int.Parse(@idea.IinvestmentNeeded) != @idea.Iinvestmentdone)
+                    {
+                        <div class="grids4-info  col-lg-4 col-md-6 col-sm-6 mt-3">
+                            <a href="@Url.Action("InvestorIdeaView","Investor",new {Iid = @idea.Iid})"><img style="width:420px;height:300px;" src="@Url.Content("~/"+idea.Iimage)" class="img-fluid" alt=""></a>
+                            @*<ul class="location-top">
                             <li class="rent">For Rent</li>
                             <li class="open-1">Open House</li>
                         </ul>*@
-                        <div class="info-bg">
-                            <h5><a href="#">@idea.Ititle</a></h5>
-                            <p>Investment Needed :  $ @idea.IinvestmentNeeded</p>
+                            <div class="info-bg">
+                                <h5><a href="#">@idea.Ititle</a></h5>
+                                <p>Investment Needed :  $ @idea.IinvestmentNeeded</p>
+                            </div>
                         </div>
-                    </div>
-                
-                 
-					
-					} 
+
+                    }
+                } 
                   <br /><br /> 
                 </div>
                 

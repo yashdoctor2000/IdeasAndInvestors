@@ -41,6 +41,7 @@ namespace IdeasAndInvestors.Models
 
         [Column(TypeName = "varchar(50)")]
         public string IRFLT20Pnt { get; set; }
+        public int Iinvestmentdone { get; set; }
 
     }
 }
