@@ -35,6 +35,11 @@ namespace IdeasAndInvestors.Controllers
             var rdFound = bkDb.PersonMasters.Where(usr => usr.Pemail == email && usr.Ppassword == password).FirstOrDefault();
             if (rdFound != null)
             {
+                if(rdFound.ISACTIVE == 0)
+                {
+                    TempData["ErrMsg"] = "You have been flaged. Contact Customer Support";
+                    return View();
+                }
                 HttpContext.Session.SetString("Pid", rdFound.Pid.ToString());
                 HttpContext.Session.SetString("UserRole", rdFound.Prollid.ToString());
                 if (rdFound.Prollid == 2)

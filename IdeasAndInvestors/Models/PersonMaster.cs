@@ -46,7 +46,7 @@ namespace IdeasAndInvestors.Models
         
         public int Prollid { get; set; }
 
-
+        public int ISACTIVE { get; set; }
 
     }
 }

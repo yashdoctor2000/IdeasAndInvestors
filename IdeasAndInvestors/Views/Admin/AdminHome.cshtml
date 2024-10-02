@@ -1,8 +1,47 @@
-﻿
+﻿@model IEnumerable<IdeasAndInvestors.Models.PersonViewModel>
 @{
     ViewData["Title"] = "Home";
     Layout = "~/Views/Shared/_IdeasInvestorsAdmin.cshtml";
 }
+<center><h1>Person Details</h1> </center>
+<table id="booking" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Entity</th>
+            <th>Phone</th>
+            <th>Flag</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Address</td>
+                <td>@item.Email</td>
+                <td>@item.Gender</td>
+                <td>@item.Entity</td>
+                <td>@item.Phone</td>
+                <td>@if(@item.ISACTIVE == 1){
+                    <a class="btn btn-info" href="@Url.Action("FlagUser","Admin",new {ID=@item.ID})" >Flag</a>
+                }
+                else{
+                    <a class="btn btn-info" href="@Url.Action("FlagUser","Admin",new {ID=@item.ID})" >Un-Flag</a>
+                }
+                &nbsp;
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-<h1>Welcome Admin</h1>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#booking').DataTable();
+    });
+</script>
 
