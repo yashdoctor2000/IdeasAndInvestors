@@ -126,7 +126,7 @@ namespace IdeasAndInvestors.Controllers
             //ideaMaster.Pid = Convert.ToInt32(TempData["Pid"]);
             ideaMaster.Idate=DateTime.Now;
             ideaMaster.Ividurl = new_str;
-            
+            ideaMaster.Iinvestmentdone = 0;
             bkDb.IdeaMasters.Add(ideaMaster);
             TempData["Pid"] = ideaMaster.Pid;
             bkDb.SaveChanges();
