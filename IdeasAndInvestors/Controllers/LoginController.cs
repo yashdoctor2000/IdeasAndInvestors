@@ -67,7 +67,8 @@ namespace IdeasAndInvestors.Controllers
         [HttpGet]
         public IActionResult SignUPStartUp()
         {
-            return View();
+            var qList = bkDb.QuestionMasters.ToList();
+            return View(qList);
 
         }
         [HttpPost]
@@ -84,9 +85,10 @@ namespace IdeasAndInvestors.Controllers
                 personMaster.Pimage = "images\\StartupImage\\" + uniqueImageName;
             }
             
-            personMaster.Pqid = 0;
-            personMaster.Panswer = "NoAnswer";
+            //personMaster.Pqid = 0;
+            //personMaster.Panswer = "NoAnswer";
             personMaster.Prollid = 2;//2 for startup
+            personMaster.ISACTIVE = 1;
             bkDb.PersonMasters.Add(personMaster);
             bkDb.SaveChanges();
             return RedirectToAction("Login");
@@ -113,6 +115,7 @@ namespace IdeasAndInvestors.Controllers
             }
             personMaster.Pqualification = "NoAnswer";
             personMaster.Prollid = 3;//3 for investors
+            personMaster.ISACTIVE = 1;
             bkDb.PersonMasters.Add(personMaster);
             bkDb.SaveChanges();
             return RedirectToAction("Login");

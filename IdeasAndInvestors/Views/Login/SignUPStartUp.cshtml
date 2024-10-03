@@ -9,6 +9,14 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.esm.min.js"></script>
 <link rel="stylesheet" href="~/template/assets/css/login-style.css">
 
+<script type="text/javascript">
+function gotoanswer()
+{
+    var e = document.getElementById("Panswer");
+    e.focus();
+}
+</script>
+
 <style>    
     label.error.fail-alert {
 /*border: 2px solid red;*/
@@ -67,6 +75,23 @@ margin-top:30px;*/
                         <div class="input-group">
                             <span><i class="fas fa-key" aria-hidden="true"></i></span>
                             <input type="password" placeholder="Password" required="" id="Ppassword" name="Ppassword">
+                        </div>
+                        Security Question
+                         <div class="">
+                             <select id="Pqid" name="Pqid" onchange="gotoanswer()">
+                                 <option value="" selected="selected">Select Question</option>
+                                 @if (Model != null)
+                                {
+                                    @foreach (var q in Model)
+                                    {
+                                        <option value="@q.Qid">@q.Questiontext</option>
+                                    }    
+                                }                            
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <span><i class="fa fa-arrow-right"></i></span>
+                            <input type="text" id="Panswer" name="Panswer" required="">
                         </div>
                         <div>
                             <span>@*<i class="fas fa-image" aria-hidden="true"></i>*@Your Photo</span>
