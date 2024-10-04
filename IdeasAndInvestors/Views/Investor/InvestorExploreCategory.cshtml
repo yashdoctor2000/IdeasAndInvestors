@@ -22,14 +22,15 @@
             @foreach (var cat in Model)
             {                   
                     <div class="col-md-4 col-sm-6 mt-3">
-                        <div class="box16">
-                             <img style="width:420px;height:300px;"  src="@Url.Content("~/" + cat.Catimage)" alt="No image found">
-                            <div class="box-content">
-                                <h3 class="title">@cat.Catname</h3>
-                                <a href="@Url.Action("InvestorCategoryDetails","Investor",new {Catid=cat.Catid})" style="color:white"><span class="post">View Ideas</span></a>
-
+                        <a href="@Url.Action("InvestorCategoryDetails","Investor", new {Catid = cat.Catid})" style="text-decoration: none; color: inherit;">
+                            <div class="box16">
+                                <img style="width: 420px; height: 300px;" src="@Url.Content("~/" + cat.Catimage)" alt="No image found">
+                                <div class="box-content">
+                                    <h3 class="title">@cat.Catname</h3>
+                                    <span class="post">View Ideas</span>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>                      
             }
             </div>
